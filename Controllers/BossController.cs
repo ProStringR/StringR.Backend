@@ -13,5 +13,11 @@ namespace StringR.Backend.Controllers
         {
             return new string[] { "Marcus", "Jaafar" };
         }
+
+        [HttpGet("noobs")]
+        public ActionResult<IEnumerable<string>> GetNoobs()
+        {
+            return new string[] {"Milisha", "Freddie"};
+        }
     }
 }
