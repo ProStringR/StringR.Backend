@@ -1,10 +1,11 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
+RUN dotnet restore
+RUN dotnet build
 WORKDIR /app
 
 # Copy csproj and restore
 COPY *.csproj ./
 RUN dotnet restore
-RUN dotnet build
 
 # Copy everything else and build
 COPY . ./
