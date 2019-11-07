@@ -17,13 +17,6 @@ namespace StringR.Backend.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        //GET api/values/bosses
-        [HttpGet("/bosses")]
-        public ActionResult<IEnumerable<string>> GetBosses()
-        {
-            return new string[] {"Marcus", "Jaafar"};
-        }
-
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
