@@ -19,6 +19,8 @@ RUN dotnet build
 
 COPY --from=build /app/out .
 
+ENV ASPNETCORE_URLS=http://+:5000
+
 ENTRYPOINT ["dotnet", "StringR.Backend.dll"]
 
 EXPOSE 5000
