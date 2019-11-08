@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers
 {
@@ -10,11 +12,24 @@ namespace StringR.Backend.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private Person _person;
+        public ValuesController(IConfiguration configuration)
+        {
+            _person = new Person(configuration);
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var value = _person.GetAllPersons();
+            return new string[] { "value1", "value2", value };
+        }
+
+        [HttpGet("person")]
+        public ActionResult<IEnumerable<string>> GetPersons()
+        {
+            var value = _person.GetAllPersons();
+            return new string[] {value, "hahaha"};
         }
 
         // GET api/values/5
