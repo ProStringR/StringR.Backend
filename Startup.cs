@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 namespace StringR.Backend
 {
@@ -25,6 +27,15 @@ namespace StringR.Backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(options =>
+            {
+                var info = new OpenApiInfo();
+                info.Title = "ProStringR API";
+                info.Version = "v1";
+                info.Description = "Racket stringing service for all";
+                options.SwaggerDoc("v1", info);
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -39,6 +50,13 @@ namespace StringR.Backend
 //            {
 //                app.UseHsts();
 //            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "ProStringR API");
+                options.RoutePrefix = string.Empty;
+            });
 
             app.UseDeveloperExceptionPage();
 
