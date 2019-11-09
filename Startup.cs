@@ -54,7 +54,7 @@ namespace StringR.Backend
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "ProStringR API");
+                options.SwaggerEndpoint("http://localhost:5000/swagger/v1/swagger.json", "ProStringR API");
                 options.RoutePrefix = string.Empty;
             });
 
