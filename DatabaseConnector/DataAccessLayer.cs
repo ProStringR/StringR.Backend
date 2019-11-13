@@ -5,7 +5,7 @@ using System.Data.Common;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
-// This class is created with inspiration from work and from 
+// This class is created with inspiration from work and from
 // http://aspalliance.com/articleViewer.aspx?aId=837&pId=-1
 namespace Database.DatabaseConnector
 {
@@ -363,7 +363,7 @@ namespace Database.DatabaseConnector
 
             #region ExecuteScalar
 
-            
+
             [Description("Executes a stored procedure, and returns the first column of the first row in the resultset returned by the query")]
             public object ExecuteScalar(string commandText, CommandType commandType)
             {
@@ -420,8 +420,8 @@ namespace Database.DatabaseConnector
 
             public static DataAccessLayerBaseClass GetDataAccessLayer(IConfiguration configuration)
             {
-                ConnectionString = configuration.GetSection("ConnectionStrings")["ConnectionString"];
-                DataProviderTypeString = configuration.GetSection("ConnectionStrings")["DataProviderType"];
+                ConnectionString = Environment.GetEnvironmentVariable("connectionString");
+                DataProviderTypeString = "MySql";
                 // Make sure application configuration file contains required configuration keys
                 if (DataProviderTypeString == null || ConnectionString == null)
                     throw new ArgumentNullException(
@@ -447,7 +447,7 @@ namespace Database.DatabaseConnector
                     dataProvider,
                     ConnectionString);
             }
-            
+
             public static DataAccessLayerBaseClass GetDataAccessLayer(DataProviderType dataProviderType,
                 string connectionString)
             {
