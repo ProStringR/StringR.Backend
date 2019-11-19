@@ -22,7 +22,7 @@ namespace StringR.Backend.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             var value = _person.GetAllPersons();
-            return new string[] { "value1", "value2", value, value };
+            return new string[] { "value1", "value2", value, value, value };
         }
 
         [HttpGet("person")]
