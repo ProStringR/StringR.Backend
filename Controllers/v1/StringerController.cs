@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace StringR.Backend.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class StringerController : ControllerBase
     {
