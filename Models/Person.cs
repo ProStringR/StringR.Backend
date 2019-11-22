@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Database.DatabaseConnector;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace StringR.Backend.Models
 {
@@ -20,6 +21,8 @@ namespace StringR.Backend.Models
             try
             {
                 DataSet dataSet = _dataAccessLayer.ExecuteDataSet("getAll", CommandType.StoredProcedure);
+                
+                Console.WriteLine(JsonConvert.SerializeObject(dataSet.Tables[0]));
                 var data = dataSet.Tables[0].Rows[0];
                 value = data["lastName"].ToString();
             }

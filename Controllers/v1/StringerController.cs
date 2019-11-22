@@ -1,5 +1,8 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using StringR.Backend.DataController;
+using StringR.Backend.DAO;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -7,12 +10,19 @@ namespace StringR.Backend.Controllers.v1
     [ApiController]
     public class StringerController : ControllerBase
     {
+
+        private StringerDataController _stringerDataController;
+        
+        public StringerController(IConfiguration configuration)
+        {
+            _stringerDataController = new StringerDataController(new StringerDAO(configuration));
+        }
         
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get()
         {
-            return new string[] { "Marcus", "Jaafar" };
+            return _stringerDataController.GetAllStringersForShop("ShopTest");
         }
         
     }
