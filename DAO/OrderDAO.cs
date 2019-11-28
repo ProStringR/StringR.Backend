@@ -51,7 +51,7 @@ namespace StringR.Backend.DAO
                 _dataAccessLayer.AddParameters(0, "id", shopId);
                 _dataAccessLayer.AddParameters(1, "stat", orderStatus);
 
-                return _dataAccessLayer.ExecuteDataSet("GetAllOrdersForShopOnStatus", CommandType.StoredProcedure);;
+                return _dataAccessLayer.ExecuteDataSet("GetAllOrdersForShopOnStatus", CommandType.StoredProcedure);
             }
             catch (Exception e)
             {
