@@ -1,23 +1,37 @@
 using System;
+using System.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
-using StringR.Backend.Models;
+using StringR.Backend.DAO;
 
 namespace StringR.Backend.DataController
 {
-    public class StringerDataController
+    public class StringerDataController : StringerDataInterface
     {
 
-        private IStringerDAO _stringerDAO;
+        private StringerDAO _stringerDAO;
         
-        public StringerDataController(IStringerDAO stringerDAO)
+        public StringerDataController(StringerDAO stringerDAO)
         {
             _stringerDAO = stringerDAO;
         }
 
-        public string GetAllStringersForShop(string shopId)
+        public string GetAllStringersForShop(int shopId)
         {
-            // Return Json string
-            return _stringerDAO.GetAllStringersForShop(shopId);;
+            DataSet dataSet;
+
+            try
+            {
+                dataSet = _stringerDAO.GetAllStringersForShop(shopId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+            return JsonConvert.SerializeObject(dataSet.Tables[0]);
         }
     }
 }

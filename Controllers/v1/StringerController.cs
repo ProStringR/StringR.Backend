@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -22,7 +23,15 @@ namespace StringR.Backend.Controllers.v1
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return _stringerDataController.GetAllStringersForShop("ShopTest");
+            try
+            {
+                return _stringerDataController.GetAllStringersForShop(1);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Failed...");
+
+            }
         }
         
     }
