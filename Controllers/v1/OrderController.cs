@@ -39,12 +39,26 @@ namespace StringR.Backend.Controllers.v1
             }
         }
 
-        [HttpGet("forShop/{shopId}")]
+        [HttpGet("shop/{shopId}")]
         public ActionResult<string> GetAllOrdersForShop(int shopId)
         {
             try
             {
                 return _orderDataController.GetAllOrdersForShop(shopId);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Failed... " + e);
+
+            }
+        }
+        
+        [HttpGet("shop/{shopId}/{orderStatus}")]
+        public ActionResult<string> GetAllOrdersForShop(int shopId, int orderStatus)
+        {
+            try
+            {
+                return _orderDataController.GetAllOrdersForShopOnStatus(shopId, orderStatus);
             }
             catch (Exception e)
             {

@@ -42,5 +42,22 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        public DataSet GetAllOrdersForShopOnStatus(int shopId, int orderStatus)
+        {
+            try
+            {
+                _dataAccessLayer.CreateParameters(2);
+                _dataAccessLayer.AddParameters(0, "id", shopId);
+                _dataAccessLayer.AddParameters(1, "stat", orderStatus);
+
+                return _dataAccessLayer.ExecuteDataSet("GetAllOrdersForShopOnStatus", CommandType.StoredProcedure);;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("ERROR: " + e);
+                throw;
+            }
+        }
     }
 }

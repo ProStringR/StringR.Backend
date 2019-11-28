@@ -24,8 +24,6 @@ namespace StringR.Backend.DataController
             {
                 var dataSet = _orderDAO.GetOrderbyId(orderId);
                 
-                Console.WriteLine(dataSet);
-                
                 order = GetOrderAsJObject(dataSet.Tables[0].Rows[0]);
             }
             catch (Exception e)
@@ -57,6 +55,29 @@ namespace StringR.Backend.DataController
                 throw;
             }
             
+            return generalObject.ToString(Formatting.None);
+        }
+
+        public string GetAllOrdersForShopOnStatus(int shopId, int orderStatus)
+        {
+            DataSet dataSet;
+            var generalObject = new JArray();
+            
+            try
+            {
+                dataSet = _orderDAO.GetAllOrdersForShopOnStatus(shopId, orderStatus);
+
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    generalObject.Add(GetOrderAsJObject(row));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
             return generalObject.ToString(Formatting.None);
         }
 
