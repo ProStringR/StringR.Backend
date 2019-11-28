@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StringR.Backend.DataController;
+using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
 
 namespace StringR.Backend.Controllers.v1
@@ -12,7 +13,7 @@ namespace StringR.Backend.Controllers.v1
     public class StringerController : ControllerBase
     {
 
-        private StringerDataController _stringerDataController;
+        private IStringerDataController _stringerDataController;
         
         public StringerController(IConfiguration configuration)
         {
@@ -23,9 +24,16 @@ namespace StringR.Backend.Controllers.v1
         [HttpGet]
         public ActionResult<string> Get()
         {
+            return BadRequest("Not Implemented...");
+        }
+        
+        // GET api/values
+        [HttpGet("{stringerId}")]
+        public ActionResult<string> GetStringerById(int stringerId)
+        {
             try
             {
-                return _stringerDataController.GetAllStringersForShop(1);
+                return _stringerDataController.GetStringerById(stringerId);
             }
             catch (Exception e)
             {
@@ -33,6 +41,19 @@ namespace StringR.Backend.Controllers.v1
 
             }
         }
-        
+
+        [HttpGet("shop/{shopId}")]
+        public ActionResult<string> GetStringersForShop(int shopId)
+        {
+            try
+            {
+                return _stringerDataController.GetAllStringersForShop(shopId);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Failed...");
+
+            }
+        }
     }
 }

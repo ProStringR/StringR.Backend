@@ -1,13 +1,12 @@
 using System;
 using System.Data;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
 
 namespace StringR.Backend.DataController
 {
-    public class StringerDataController : StringerDataInterface
+    public class StringerDataController : IStringerDataController
     {
 
         private StringerDAO _stringerDAO;
@@ -15,6 +14,21 @@ namespace StringR.Backend.DataController
         public StringerDataController(StringerDAO stringerDAO)
         {
             _stringerDAO = stringerDAO;
+        }
+
+        public string GetStringerById(int stringerId)
+        {
+
+            try
+            {
+                return JsonConvert.SerializeObject(_stringerDAO.GetStringerById(stringerId).Tables[0]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public string GetAllStringersForShop(int shopId)

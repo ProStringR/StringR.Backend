@@ -15,6 +15,19 @@ namespace StringR.Backend.DAO
             _dataAccessLayer = DataAccessLayer.DataAccessLayerFactory.GetDataAccessLayer(configuration);
             _dataController = new DataController(configuration);
         }
+        
+        public DataSet GetOrderbyId(int orderId)
+        {
+            try
+            {
+                return _dataController.GetAllDataFromId(orderId, "GetOrderById");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         public DataSet GetAllOrdersForShop(int shopId)
         {

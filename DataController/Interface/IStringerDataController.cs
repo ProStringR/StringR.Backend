@@ -2,8 +2,9 @@ using StringR.Backend.DAO;
 
 namespace StringR.Backend.DataController.Interface
 {
-    public interface StringerDataInterface
+    public interface IStringerDataController
     {
+        string GetStringerById(int stringerId);
         string GetAllStringersForShop(int shopId);
     }
 }

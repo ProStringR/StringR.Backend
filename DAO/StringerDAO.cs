@@ -16,6 +16,19 @@ namespace StringR.Backend.DAO
             _dataController = new DataController(configuration);
         }
 
+        public DataSet GetStringerById(int stringerId)
+        {
+            try
+            {
+                return _dataController.GetAllDataFromId(stringerId, "GetStringerById");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         public DataSet GetAllStringersForShop(int shopId)
         {
             try
@@ -27,22 +40,6 @@ namespace StringR.Backend.DAO
                 Console.WriteLine(e);
                 throw;
             }
-
-//            try
-//            {
-//                // Call stored procedure
-//                _dataAccessLayer.CreateParameters(1);
-//                _dataAccessLayer.AddParameters(0, "id", 1);
-//                DataSet response =
-//                    _dataAccessLayer.ExecuteDataSet("GetTeamOfStringerForShop", CommandType.StoredProcedure);
-//
-//                return response;
-//            }
-//            catch (Exception e)
-//            {
-//                Console.WriteLine("ERROR: " + e);
-//                throw;
-//            }
         }
     }
 }
