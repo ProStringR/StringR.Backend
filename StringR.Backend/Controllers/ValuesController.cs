@@ -12,24 +12,20 @@ namespace StringR.Backend.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private Person _person;
         public ValuesController(IConfiguration configuration)
         {
-            _person = new Person(configuration);
         }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var value = _person.GetAllPersons();
-            return new string[] { "value1", "value2", value, value, "Marcus" };
+            return new string[] { "value1", "value2", "Marcus" };
         }
 
         [HttpGet("person")]
         public ActionResult<IEnumerable<string>> GetPersons()
         {
-            var value = _person.GetAllPersons();
-            return new string[] {value, "hahaha"};
+            return new string[] {"hahaha"};
         }
 
         // GET api/values/5
