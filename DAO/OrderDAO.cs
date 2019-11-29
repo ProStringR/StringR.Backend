@@ -16,6 +16,11 @@ namespace StringR.Backend.DAO
             _dataController = new DataController(configuration);
         }
         
+        /*
+         *
+         *    GET
+         * 
+         */
         public DataSet GetOrderbyId(int orderId)
         {
             try

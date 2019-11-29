@@ -18,6 +18,12 @@ namespace StringR.Backend.Controllers.v1
         {
             _racketStringDataController = new RacketStringDataController(new RacketStringDAO(configuration));
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         [HttpGet("{racketStringId}")]
         public ActionResult<string> GetRacketStringById(int racketStringId)

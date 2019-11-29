@@ -15,6 +15,12 @@ namespace StringR.Backend.DataController
         {
             _orderDAO = orderDAO;
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         public string GetOrderById(int orderId)
         {

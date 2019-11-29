@@ -15,6 +15,12 @@ namespace StringR.Backend.DataController
         {
             _shopDAO = shopDAO;
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         public string GetShopById(int shopId)
         {
@@ -49,7 +55,7 @@ namespace StringR.Backend.DataController
             address.Add("street", row["street"].ToString());
             address.Add("addressNumber", row["addressNumber"].ToString());
             
-            JProperty addressProperty = new JProperty("address", address);
+            var addressProperty = new JProperty("address", address);
             
             jObject.Add(addressProperty);
 

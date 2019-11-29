@@ -15,6 +15,11 @@ namespace StringR.Backend.DataController
             _customerDAO = customerDAO;
         }
         
+        /*
+         *
+         *    GET
+         * 
+         */
         public string GetAllCustomers()
         {
             try

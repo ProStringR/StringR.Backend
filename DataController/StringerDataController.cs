@@ -15,6 +15,12 @@ namespace StringR.Backend.DataController
         {
             _stringerDAO = stringerDAO;
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         public string GetStringerById(int stringerId)
         {

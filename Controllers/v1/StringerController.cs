@@ -20,14 +20,18 @@ namespace StringR.Backend.Controllers.v1
             _stringerDataController = new StringerDataController(new StringerDAO(configuration));
         }
         
-        // GET api/values
+        /*
+         *
+         *    GET
+         * 
+         */
+        
         [HttpGet]
         public ActionResult<string> Get()
         {
             return BadRequest("Not Implemented...");
         }
         
-        // GET api/values
         [HttpGet("{stringerId}")]
         public ActionResult<string> GetStringerById(int stringerId)
         {

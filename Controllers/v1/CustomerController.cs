@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
@@ -7,6 +8,7 @@ using StringR.Backend.DAO;
 
 namespace StringR.Backend.Controllers.v1
 {
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -18,6 +20,12 @@ namespace StringR.Backend.Controllers.v1
         {
             _customerDataController = new CustomerDataController(new CustomerDAO(configuration));
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         [HttpGet]
         public ActionResult<string> GetAllCustomers()

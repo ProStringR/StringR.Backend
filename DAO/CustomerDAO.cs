@@ -16,6 +16,12 @@ namespace StringR.Backend.DAO
             _dataAccessLayer = DataAccessLayer.DataAccessLayerFactory.GetDataAccessLayer(configuration);
             _dataController = new DataController(configuration);
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         public DataSet GetAllCustomers()
         {

@@ -18,6 +18,12 @@ namespace StringR.Backend.Controllers.v1
         {
             _shopDataController = new ShopDataController(new ShopDAO(configuration));
         }
+        
+        /*
+         *
+         *    GET
+         * 
+         */
 
         [HttpGet("{shopId}")]
         public ActionResult<string> GetShopById(int shopId)

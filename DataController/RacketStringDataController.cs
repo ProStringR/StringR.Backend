@@ -15,6 +15,12 @@ namespace StringR.Backend.DataController
             _racketStringDAO = racketStringDAO;
         }
         
+        /*
+         *
+         *    GET
+         * 
+         */
+        
         public string GetStringById(int racketStringId)
         {
             try

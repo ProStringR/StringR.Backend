@@ -19,7 +19,12 @@ namespace StringR.Backend.Controllers.v1
             _orderDataController = new OrderDataController(new OrderDAO(configuration));
         }
         
-        // GET api/values
+        /*
+         *
+         *    GET
+         * 
+         */
+        
         [HttpGet]
         public ActionResult<string> Get()
         {
