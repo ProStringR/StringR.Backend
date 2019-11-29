@@ -45,5 +45,26 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+
+        public void PostCustomer(
+            string firstName,
+            string lastName,
+            string email,
+            string phoneNumber,
+            string userId,
+            string password,
+            int preferredStringTypeId,
+            double preferredTensionVertical,
+            double preferredTensionHorizontal)
+        {
+            try
+            {
+                _customerDAO.PostCustomer(firstName, lastName, email, phoneNumber, userId, password, preferredStringTypeId, preferredTensionVertical, preferredTensionHorizontal);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }

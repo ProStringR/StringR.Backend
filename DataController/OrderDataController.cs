@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
@@ -87,6 +88,29 @@ namespace StringR.Backend.DataController
             return generalObject.ToString(Formatting.None);
         }
 
+        /*
+         *
+         *    PUT
+         * 
+         */
+        public void PutOrder(int orderId, long transactionDate, bool paidStatus, int orderStatus)
+        {
+            try
+            {
+                _orderDAO.PutOrder(orderId, transactionDate, paidStatus, orderStatus);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        
+        /*
+         *
+         *    JObject construction
+         * 
+         */
         private JObject GetOrderAsJObject(DataRow row)
         {
             

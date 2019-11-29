@@ -64,5 +64,32 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        /*
+         *
+         *    PUT
+         * 
+         */
+        public void PutOrder(int orderId, long transactionDate, bool paidStatus, int orderStatus)
+        {
+            _dataAccessLayer.BeginTransaction();
+            try
+            {
+                _dataAccessLayer.CreateParameters(4);
+                _dataAccessLayer.AddParameters(0, "orderId", orderId);
+                _dataAccessLayer.AddParameters(1, "transactionDate", transactionDate);
+                _dataAccessLayer.AddParameters(2, "paidStatus", paidStatus);
+                _dataAccessLayer.AddParameters(3, "orderStatus", orderStatus);
+
+                _dataAccessLayer.ExecuteScalar("UpdateOrder", CommandType.StoredProcedure);
+
+                _dataAccessLayer.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                _dataAccessLayer.RollbackTransaction();
+                throw;
+            }   
+        }
     }
 }

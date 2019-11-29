@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -50,6 +51,31 @@ namespace StringR.Backend.Controllers.v1
             {
                 Console.WriteLine(e);
                 return BadRequest("Something went wrong");
+            }
+        }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+
+        /*
+         *
+         *    PUT
+         * 
+         */
+        [HttpPut]
+        public ActionResult PutRacketStringToStorage([FromBody] StringToStorageTransaction stringToStorageTransaction)
+        {
+            try
+            {
+                _racketStringDataController.PutRacketStringToStorage(stringToStorageTransaction.StringId, stringToStorageTransaction.Price, stringToStorageTransaction.TransactionDate, stringToStorageTransaction.LengthAdded);
+                return Ok("Your string is now updated");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong updating the string");
             }
         }
     }

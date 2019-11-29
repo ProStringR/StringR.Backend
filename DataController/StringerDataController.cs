@@ -53,5 +53,18 @@ namespace StringR.Backend.DataController
             
             return JsonConvert.SerializeObject(dataSet.Tables[0]);
         }
+
+        public void PostStringerToTeam(int teamId, string firstName, string lastName, string phoneNumber, string email,
+            int preferredRacketType)
+        {
+            try
+            {
+                _stringerDAO.PostStringerToTeam(teamId, firstName, lastName, phoneNumber, email, preferredRacketType);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }

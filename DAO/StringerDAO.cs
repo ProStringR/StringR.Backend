@@ -47,5 +47,37 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+        public void PostStringerToTeam(int teamId, string firstName, string lastName, string phoneNumber, string email,
+            int preferredRacketType)
+        {
+            
+            _dataAccessLayer.BeginTransaction();
+
+            try
+            {
+                _dataAccessLayer.CreateParameters(6);
+                _dataAccessLayer.AddParameters(0, "teamId", teamId);
+                _dataAccessLayer.AddParameters(1, "firstName", firstName);
+                _dataAccessLayer.AddParameters(2, "lastName", lastName);
+                _dataAccessLayer.AddParameters(3, "phoneNumber", phoneNumber);
+                _dataAccessLayer.AddParameters(4, "email", email);
+                _dataAccessLayer.AddParameters(5, "preferredRacketType", preferredRacketType);
+
+                _dataAccessLayer.ExecuteScalar("AddStringerToTeam", CommandType.StoredProcedure);
+                
+                _dataAccessLayer.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                _dataAccessLayer.RollbackTransaction();
+                throw;
+            }
+        }
     }
 }

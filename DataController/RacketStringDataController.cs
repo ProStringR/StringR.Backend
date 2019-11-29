@@ -46,5 +46,23 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+
+        /*
+         *
+         *    PUT
+         * 
+         */
+
+        public void PutRacketStringToStorage(int stringId, double price, long transactionDate, int lengthAdded)
+        {
+            try
+            {
+                _racketStringDAO.PutRacketStringToStorage(stringId, price, transactionDate, lengthAdded);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }

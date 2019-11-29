@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -69,6 +70,26 @@ namespace StringR.Backend.Controllers.v1
             {
                 return BadRequest("Failed... " + e);
 
+            }
+        }
+        
+        /*
+         *
+         *    PUT
+         * 
+         */
+
+        [HttpPut]
+        public ActionResult PutOrder([FromBody] OrderTransaction orderTransaction)
+        {
+            try
+            {
+                _orderDataController.PutOrder(orderTransaction.OrderId, orderTransaction.TransactionDate, orderTransaction.PaidStatus, orderTransaction.OrderStatus);
+                return Ok("Your order is now updated");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong during the updating process");
             }
         }
     }

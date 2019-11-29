@@ -31,28 +31,28 @@ namespace StringR.Backend.Controllers.v1
         }
         
         [HttpPost]
-        public ActionResult<string> ShopLogin([FromBody] UserForAcces login)
+        public ActionResult<string> ShopLogin([FromBody] UserForAccess login)
         {
 
             // control the user input
-            if (login.userName == null || login.password == null)
+            if (login.UserName == null || login.Password == null)
             {
                 return BadRequest("Invalid input");
             }
             
             // check if the user exits in the DB
-            var response = _shopDataController.ValidateShop(login.userName, login.password);
+            var response = _shopDataController.ValidateShop(login.UserName, login.Password);
             
             // check the result from searching the DB
-            if (response == 1) 
+            if (response != 1) 
             {
-                // if we have a user then create a token for the user
-                var token = CreateToken(login.userName);
-                return Ok(token);
+                // if dont have a user return a badrequest
+                return NotFound("We could not find a shop corresponding the username and password");
             }
             
-            // if dont have a user return a badrequest
-            return NotFound("We could not find a shop corresponding the username and password");
+            // if we have a user then create a token for the user
+            var token = CreateToken(login.UserName);
+            return Ok(token);
         }
 
         private string CreateToken(string userName)

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -52,5 +53,36 @@ namespace StringR.Backend.Controllers.v1
                 return BadRequest("Failed... " + e); 
             }
         }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult PostCustomer([FromBody] Customer customer)
+        {
+            try
+            {
+                _customerDataController.PostCustomer(
+                    customer.FirstName, 
+                    customer.LastName, 
+                    customer.Email, 
+                    customer.PhoneNumber, 
+                    customer.UserId, 
+                    customer.Password, 
+                    customer.PreferredStringTypeId, 
+                    customer.PreferredTensionVertical, 
+                    customer.PreferredTensionHorizontal);
+
+                return Ok("The customer is saved successfully");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong saving the customer");
+            }
+        }
+
     }
 }

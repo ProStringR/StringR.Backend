@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -57,6 +58,25 @@ namespace StringR.Backend.Controllers.v1
             {
                 return BadRequest("Failed...");
 
+            }
+        }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+        [HttpPost]
+        public ActionResult PostStringerToTeam([FromBody] StringerToTeam stringerToTeam)
+        {
+            try
+            {
+                _stringerDataController.PostStringerToTeam(stringerToTeam.TeamId, stringerToTeam.Firstname, stringerToTeam.LastName, stringerToTeam.PhoneNumber, stringerToTeam.Email, stringerToTeam.PreferredRacketType);
+                return Ok("The stringer has been successfully added to the team");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong adding the stringer to the team");
             }
         }
     }

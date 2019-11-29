@@ -47,5 +47,40 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+
+        /*
+         *
+         *    PUT
+         * 
+         */
+
+        public void PutRacketStringToStorage(int stringId, double price, long transactionDate, int lengthAdded)
+        {
+            _dataAccessLayer.BeginTransaction();
+
+            try
+            {
+                _dataAccessLayer.CreateParameters(4);
+                _dataAccessLayer.AddParameters(0, "stringId", stringId);
+                _dataAccessLayer.AddParameters(1, "price", price);
+                _dataAccessLayer.AddParameters(2, "transactionDate", transactionDate);
+                _dataAccessLayer.AddParameters(3, "lengthAdded", lengthAdded);
+
+                _dataAccessLayer.ExecuteScalar("UpdateRacketStringInStorageOnPurchase", CommandType.StoredProcedure);
+                
+                _dataAccessLayer.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                _dataAccessLayer.RollbackTransaction();
+                throw;
+            }
+        }
     }
 }
