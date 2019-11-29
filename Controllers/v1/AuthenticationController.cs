@@ -13,12 +13,13 @@ namespace StringR.Backend.Controllers.v1
     public class AuthenticationController : ControllerBase
     {
 
-        private string secretKey = "yeTAdHIcM2IBFWBjRRPDCD4Ro5uLMlXiu67OyNkQUyI4VkEoUrAk0qE01XJNRL87bVyWjXmjYyTWRli1u1R2xHUMpoPHMkEOj5ehTw5RjQgcZDHzjIKf735UUqyNqNYJ7UOzuwVi1m6lXFwOMGQdVTgAIxSF3NhQ2fzGSegLWf8NeqFNbrdKK9LfMfTWPy2UWUabmjRkRwIymJ1lEZwXuXxp8yHt7LOl3y2RuW9Prmsu25Nf4rQupXqvVL9gB0fPeiB4smbGUSVuDHYRaHDn4KV1UjYvkBOifz6pVARH00WsKFTdBg3KfaMqwUK8PwVjmNpfRgY7r5dRafuqiwAxJ732XB9b4cLyh3EUntKt2NglDObAs8VZG73Oi6U15IJuAaOSNuE1Q7YVq6vpkawXILx90N1ytRlBXVL5vFtJPHfKLdlLt2P2gh0RKsFPTxXchaMNj6TanrTFdxyqnmQ3iZkHYOBa61XGeObddtoz2yatn10V7iEf23k5QTCcROEV";
-        private int daysValid = 1;
-        private string authority = "https://prostringr.com";      
+        public static readonly string SecretKey = "yeTAdHIcM2IBFWBjRRPDCD4Ro5uLMlXiu67OyNkQUyI4VkEoUrAk0qE01XJNRL87bVyWjXmjYyTWRli1u1R2xHUMpoPHMkEOj5ehTw5RjQgcZDHzjIKf735UUqyNqNYJ7UOzuwVi1m6lXFwOMGQdVTgAIxSF3NhQ2fzGSegLWf8NeqFNbrdKK9LfMfTWPy2UWUabmjRkRwIymJ1lEZwXuXxp8yHt7LOl3y2RuW9Prmsu25Nf4rQupXqvVL9gB0fPeiB4smbGUSVuDHYRaHDn4KV1UjYvkBOifz6pVARH00WsKFTdBg3KfaMqwUK8PwVjmNpfRgY7r5dRafuqiwAxJ732XB9b4cLyh3EUntKt2NglDObAs8VZG73Oi6U15IJuAaOSNuE1Q7YVq6vpkawXILx90N1ytRlBXVL5vFtJPHfKLdlLt2P2gh0RKsFPTxXchaMNj6TanrTFdxyqnmQ3iZkHYOBa61XGeObddtoz2yatn10V7iEf23k5QTCcROEV";
+        private int DaysValid = 360;
+        private string Issuer = "https://prostringr.com";
+        private string Audience = "https://prostringr.com";
         
         [HttpGet]
-        public ActionResult<string> shopLogin()
+        public ActionResult<string> ShopLogin()
         {
 
             // control the user input
@@ -39,7 +40,7 @@ namespace StringR.Backend.Controllers.v1
             
             
             // return the user with the repsonse from the look up, the tokenString and the userName
-            return token;
+            return Ok(token);
         }
 
         private string CreateToken(string userName)
@@ -50,10 +51,10 @@ namespace StringR.Backend.Controllers.v1
             var claimsIdentity = new ClaimsIdentity();
             claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userName));
             
-            var token = tokenHandler.CreateJwtSecurityToken(issuer: authority, audience: authority, subject: claimsIdentity,
-                notBefore: DateTime.UtcNow, expires: DateTime.UtcNow.AddSeconds(daysValid), signingCredentials:
+            var token = tokenHandler.CreateJwtSecurityToken(issuer: Issuer, audience: Audience, subject: claimsIdentity,
+                notBefore: DateTime.UtcNow, expires: DateTime.UtcNow.AddDays(DaysValid), signingCredentials:
                 new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.Default.GetBytes(secretKey)),
+                    new SymmetricSecurityKey(Encoding.Default.GetBytes(SecretKey)),
                     SecurityAlgorithms.HmacSha256Signature));
 
             return tokenHandler.WriteToken(token);
