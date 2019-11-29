@@ -9,5 +9,12 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         string GetShopById(int shopId);
+        
+        /*
+         *
+         *    Validate
+         * 
+         */
+        long ValidateShop(string userName, string password);
     }
 }

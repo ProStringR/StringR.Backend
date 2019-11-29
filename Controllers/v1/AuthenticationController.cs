@@ -4,7 +4,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using StringR.Backend.DAO;
+using StringR.Backend.DataController;
+using StringR.Backend.DataController.Interface;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -18,34 +23,40 @@ namespace StringR.Backend.Controllers.v1
         private string Issuer = "https://prostringr.com";
         private string Audience = "https://prostringr.com";
         
-        [HttpGet]
-        public ActionResult<string> ShopLogin()
+        private IShopDataController _shopDataController;
+        
+        public AuthenticationController(IConfiguration configuration)
+        {
+            _shopDataController = new ShopDataController(new ShopDAO(configuration));
+        }
+        
+        [HttpPost]
+        public ActionResult<string> ShopLogin([FromBody] UserForAcces login)
         {
 
             // control the user input
-//            if (userName == null || password != null)
-//            {
-//                return BadRequest("Invalid input");
-//            }
+            if (login.userName == null || login.password == null)
+            {
+                return BadRequest("Invalid input");
+            }
             
             // check if the user exits in the DB
-            
+            var response = _shopDataController.ValidateShop(login.userName, login.password);
             
             // check the result from searching the DB
+            if (response == 1) 
+            {
+                // if we have a user then create a token for the user
+                var token = CreateToken(login.userName);
+                return Ok(token);
+            }
             
             // if dont have a user return a badrequest
-            
-            // if we have a user then create a token for the user
-            var token = CreateToken("Marcus"); 
-            
-            
-            // return the user with the repsonse from the look up, the tokenString and the userName
-            return Ok(token);
+            return NotFound("We could not find a shop corresponding the username and password");
         }
 
         private string CreateToken(string userName)
         {
-
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var claimsIdentity = new ClaimsIdentity();

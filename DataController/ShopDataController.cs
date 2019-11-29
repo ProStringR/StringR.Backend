@@ -34,6 +34,18 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+        
+        /*
+         *
+         *    Validate
+         * 
+         */
+        public long ValidateShop(string userName, string password)
+        {
+            var dataSet = _shopDAO.ValidateShop(userName, password);
+
+            return (long) dataSet.Tables[0].Rows[0]["response"];
+        }
 
         private JObject GetShopAsJObject(DataRow row)
         {
