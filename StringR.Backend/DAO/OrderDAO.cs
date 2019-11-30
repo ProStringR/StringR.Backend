@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Database.DatabaseConnector;
 using Microsoft.Extensions.Configuration;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DAO
 {
@@ -65,6 +66,41 @@ namespace StringR.Backend.DAO
             }
         }
         
+        /*
+         *
+         *    POST
+         * 
+         */
+        public void PostOrder(Order order)
+        {
+            _dataAccessLayer.BeginTransaction();
+            try
+            {
+                _dataAccessLayer.CreateParameters(12);
+                _dataAccessLayer.AddParameters(0, "customerId", order.customerId);
+                _dataAccessLayer.AddParameters(1, "stringerId", order.stringerId);
+                _dataAccessLayer.AddParameters(2, "shopId", order.shopId);
+                _dataAccessLayer.AddParameters(3, "racketModel", order.racketModel);
+                _dataAccessLayer.AddParameters(4, "racketBrand", order.racketBrand);
+                _dataAccessLayer.AddParameters(5, "tensionVertical", order.tensionVertical);
+                _dataAccessLayer.AddParameters(6, "tensionHorizontal", order.tensionHorizontal);
+                _dataAccessLayer.AddParameters(7, "stringId", order.stringId);
+                _dataAccessLayer.AddParameters(8, "deliveryDate", order.deliveryDate);
+                _dataAccessLayer.AddParameters(9, "price", order.price);
+                _dataAccessLayer.AddParameters(10, "comment", order.comment);
+                _dataAccessLayer.AddParameters(11, "datePlaced", order.datePlaced);
+
+                _dataAccessLayer.ExecuteScalar("CreateOrder", CommandType.StoredProcedure);
+
+                _dataAccessLayer.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                _dataAccessLayer.RollbackTransaction();
+                throw;
+            }   
+        }
+
         /*
          *
          *    PUT

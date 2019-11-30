@@ -75,6 +75,25 @@ namespace StringR.Backend.Controllers.v1
         
         /*
          *
+         *    POST
+         * 
+         */
+        [HttpPost]
+        public ActionResult PostOrder([FromBody] Order order)
+        {
+            try
+            {
+                _orderDataController.PostOrder(order);
+                return Ok("The order has been placed successfully");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong placing the order");
+            }
+        }
+
+        /*
+         *
          *    PUT
          * 
          */

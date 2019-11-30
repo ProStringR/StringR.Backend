@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
 {
@@ -35,6 +36,35 @@ namespace StringR.Backend.DataController
             }
         }
         
+        /*
+         *
+         *    POST
+         * 
+         */
+        public void PostShop(Shop shop)
+        {
+            try
+            {
+                _shopDAO.PostShop(shop);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember)
+        {
+            try
+            {
+                _shopDAO.PostTeamToShopWithMember(teamToShopWithMember);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         /*
          *
          *    Validate

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
@@ -35,6 +36,39 @@ namespace StringR.Backend.Controllers.v1
             catch (Exception e)
             {
                 return BadRequest("Something went Wrong");
+            }
+        }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+        [HttpPost]
+        public ActionResult PostShop([FromBody] Shop shop)
+        {
+            try
+            {
+                _shopDataController.PostShop(shop);
+                return Ok("The shop has been created successfully");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong creating the shop");
+            }
+        }
+
+        [HttpPost("postTeamWithMember")]
+        public ActionResult PostTeamToShopWithMember([FromBody] TeamToShopWithMember teamToShopWithMember)
+        {
+            try
+            {
+                _shopDataController.PostTeamToShopWithMember(teamToShopWithMember);
+                return Ok("The team has been created successfully");
+            }
+            catch (Exception e)
+            {
+                return NotFound("Something went wrong creating the team");
             }
         }
 
