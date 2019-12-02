@@ -178,7 +178,7 @@ namespace StringR.Backend.DataController
             racketString.Add("purpose", row["stringPurpose"].ToString());
             racketString.Add("color", row["stringColor"].ToString());
             
-            var racketStringProperty = new JProperty("racketString", racket);
+            var racketStringProperty = new JProperty("racketString", racketString);
            
             // adding properties to the generel order object
             jObject.Add(customerProperty);
