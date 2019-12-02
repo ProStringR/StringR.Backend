@@ -7,7 +7,7 @@ namespace StringR.Backend.Models
         public double Weight { get; }
         public int StringsMain { get; }
         public int StringsCross { get; }
-        public int gripSize { get; }
+        public int GripSize { get; }
 
         public Racket(int brand, int model, double weight, int stringsMain, int stringsCross, int gripSize)
         {
@@ -16,7 +16,7 @@ namespace StringR.Backend.Models
             Weight = weight;
             StringsMain = stringsMain;
             StringsCross = stringsCross;
-            this.gripSize = gripSize;
+            this.GripSize = gripSize;
         }
     }
 }

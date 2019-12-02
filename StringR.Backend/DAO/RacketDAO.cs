@@ -40,7 +40,7 @@ namespace StringR.Backend.DAO
                 _dataAccessLayer.AddParameters(2, "weight", racket.Weight);
                 _dataAccessLayer.AddParameters(3, "stringsMain", racket.StringsMain);
                 _dataAccessLayer.AddParameters(4, "stringsCross", racket.StringsCross);
-                _dataAccessLayer.AddParameters(5, "gripSize", racket.gripSize);
+                _dataAccessLayer.AddParameters(5, "gripSize", racket.GripSize);
 
                 _dataAccessLayer.ExecuteScalar("CreateRacket", CommandType.StoredProcedure);
 
