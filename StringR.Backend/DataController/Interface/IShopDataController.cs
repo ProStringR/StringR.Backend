@@ -1,3 +1,6 @@
+using System;
+using StringR.Backend.Models;
+
 namespace StringR.Backend.DataController.Interface
 {
     public interface IShopDataController
@@ -12,9 +15,17 @@ namespace StringR.Backend.DataController.Interface
         
         /*
          *
+         *    POST
+         * 
+         */
+        void PostShop(Shop shop);
+        void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember);
+
+        /*
+         *
          *    Validate
          * 
          */
-        long ValidateShop(string userName, string password);
+        (int shopId, string password) ValidateShop(string userName);
     }
 }

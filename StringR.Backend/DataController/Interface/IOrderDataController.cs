@@ -1,3 +1,5 @@
+using StringR.Backend.Models;
+
 namespace StringR.Backend.DataController.Interface
 {
     public interface IOrderDataController
@@ -11,6 +13,13 @@ namespace StringR.Backend.DataController.Interface
         string GetOrderById(int orderId);
         string GetAllOrdersForShop(int shopId);
         string GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+        void PostOrder(Order order);
         
         /*
          *

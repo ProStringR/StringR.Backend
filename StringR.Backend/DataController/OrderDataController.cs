@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
 {
@@ -86,6 +87,18 @@ namespace StringR.Backend.DataController
             }
 
             return generalObject.ToString(Formatting.None);
+        }
+
+        public void PostOrder(Order order)
+        {
+            try
+            {
+                _orderDAO.PostOrder(order);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }   
         }
 
         /*

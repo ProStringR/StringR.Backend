@@ -1,6 +1,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -41,18 +42,25 @@ namespace StringR.Backend.Controllers.v1
             }
             
             // check if the user exits in the DB
-            var response = _shopDataController.ValidateShop(login.UserName, login.Password);
-            
+            var response = _shopDataController.ValidateShop(login.UserName);
+           
             // check the result from searching the DB
-            if (response != 1) 
+            if (response.password == null || response.password.Length <= 0) 
             {
-                // if dont have a user return a badrequest
+                // if dont have a user return a bad request
+                return NotFound("We could not find a shop corresponding the username and password");
+            }
+
+            if (!ComparePassword(response.password, login.Password))
+            {
                 return NotFound("We could not find a shop corresponding the username and password");
             }
             
-            // if we have a user then create a token for the user
             var token = CreateToken(login.UserName);
-            return Ok(token);
+            
+            var authenticationResponse = new AuthenticateResponse(token, response.shopId, login.UserName + " is successfully authenticated");
+                
+            return Ok(authenticationResponse);
         }
 
         private string CreateToken(string userName)
@@ -71,5 +79,53 @@ namespace StringR.Backend.Controllers.v1
             return tokenHandler.WriteToken(token);
         }
 
+        public static string HashingPassword(string stringToBeHashed)
+        {
+            // generating the salt
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+            
+            var passwordHashed = new Rfc2898DeriveBytes(stringToBeHashed, salt, 10000);
+
+            byte[] hash = passwordHashed.GetBytes(20);
+            
+            // 36 because we have 16 from the salt and 20 for the password
+            byte[] hashBytes = new byte[36];
+            
+            // getting hash and salt into the right position
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+            
+            return Convert.ToBase64String(hashBytes);
+        }
+
+        private bool ComparePassword(string savedPassword, string inputPassword)
+        {
+            
+            // get the saved password in byte[]
+            byte[] hashBytes = Convert.FromBase64String(savedPassword);
+            
+            // generating salt
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            
+            // hash the password
+            var passwordHashed = new Rfc2898DeriveBytes(inputPassword, salt, 10000);
+            byte[] hash = passwordHashed.GetBytes(20);
+            
+            // validating the passwords
+            var isPasswordEqual = true;
+
+            for (int i = 0; i < 20; i++)
+            {
+                if (hashBytes[i+16] != hash[i])
+                {
+                    isPasswordEqual = false;
+                    break;
+                }
+            }
+            
+            return isPasswordEqual;
+        }
     }
 }

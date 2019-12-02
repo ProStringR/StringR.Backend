@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
 {
@@ -37,14 +38,43 @@ namespace StringR.Backend.DataController
         
         /*
          *
+         *    POST
+         * 
+         */
+        public void PostShop(Shop shop)
+        {
+            try
+            {
+                _shopDAO.PostShop(shop);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        public void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember)
+        {
+            try
+            {
+                _shopDAO.PostTeamToShopWithMember(teamToShopWithMember);
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+        /*
+         *
          *    Validate
          * 
          */
-        public long ValidateShop(string userName, string password)
+        public (int shopId, string password) ValidateShop(string userName)
         {
-            var dataSet = _shopDAO.ValidateShop(userName, password);
+            var dataSet = _shopDAO.ValidateShop(userName);
 
-            return (long) dataSet.Tables[0].Rows[0]["response"];
+            return ((int) dataSet.Tables[0].Rows[0]["id"] ,dataSet.Tables[0].Rows[0]["password"].ToString());
         }
 
         private JObject GetShopAsJObject(DataRow row)
