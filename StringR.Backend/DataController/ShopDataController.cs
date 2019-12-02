@@ -70,11 +70,11 @@ namespace StringR.Backend.DataController
          *    Validate
          * 
          */
-        public string ValidateShop(string userName)
+        public (int shopId, string password) ValidateShop(string userName)
         {
             var dataSet = _shopDAO.ValidateShop(userName);
 
-            return dataSet.Tables[0].Rows[0]["password"].ToString();
+            return ((int) dataSet.Tables[0].Rows[0]["id"] ,dataSet.Tables[0].Rows[0]["password"].ToString());
         }
 
         private JObject GetShopAsJObject(DataRow row)

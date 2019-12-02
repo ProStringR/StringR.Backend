@@ -26,6 +26,6 @@ namespace StringR.Backend.DataController.Interface
          *    Validate
          * 
          */
-        string ValidateShop(string userName);
+        (int shopId, string password) ValidateShop(string userName);
     }
 }

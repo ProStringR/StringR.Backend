@@ -42,23 +42,25 @@ namespace StringR.Backend.Controllers.v1
             }
             
             // check if the user exits in the DB
-            var savedPassword = _shopDataController.ValidateShop(login.UserName);
+            var response = _shopDataController.ValidateShop(login.UserName);
            
             // check the result from searching the DB
-            if (savedPassword == null || savedPassword.Length <= 0) 
+            if (response.password == null || response.password.Length <= 0) 
             {
                 // if dont have a user return a bad request
                 return NotFound("We could not find a shop corresponding the username and password");
             }
 
-            if (!ComparePassword(savedPassword, login.Password))
+            if (!ComparePassword(response.password, login.Password))
             {
                 return NotFound("We could not find a shop corresponding the username and password");
             }
             
             var token = CreateToken(login.UserName);
+            
+            var authenticationResponse = new AuthenticateResponse(token, response.shopId, login.UserName + " is successfully authenticated");
                 
-            return Ok(token);
+            return Ok(authenticationResponse);
         }
 
         private string CreateToken(string userName)
