@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Database.DatabaseConnector;
 using Microsoft.Extensions.Configuration;
+using StringR.Backend.Controllers.v1;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DAO
@@ -57,7 +58,7 @@ namespace StringR.Backend.DAO
                 _dataAccessLayer.AddParameters(7, "addressNumber", shop.AddressNumber);
                 _dataAccessLayer.AddParameters(8, "phoneNumber", shop.PhoneNumber);
                 _dataAccessLayer.AddParameters(9, "userId", shop.UserId);
-                _dataAccessLayer.AddParameters(10, "password", shop.Password);
+                _dataAccessLayer.AddParameters(10, "password", AuthenticationController.HashingPassword(shop.Password));
 
                 _dataAccessLayer.ExecuteScalar("CreateShop", CommandType.StoredProcedure);
                 
@@ -99,13 +100,12 @@ namespace StringR.Backend.DAO
          *    Validate
          * 
          */
-        public DataSet ValidateShop(string userName, string password)
+        public DataSet ValidateShop(string userName)
         {
             try
             {
-                _dataAccessLayer.CreateParameters(2);
+                _dataAccessLayer.CreateParameters(1);
                 _dataAccessLayer.AddParameters(0, "userId", userName);
-                _dataAccessLayer.AddParameters(1, "password", password);
 
                 return _dataAccessLayer.ExecuteDataSet("AuthenticateShop", CommandType.StoredProcedure);;
             }

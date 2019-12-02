@@ -35,32 +35,30 @@ namespace StringR.Backend.Controllers.v1
         public ActionResult<string> ShopLogin([FromBody] UserForAccess login)
         {
 
-//            // control the user input
-//            if (login.UserName == null || login.Password == null)
-//            {
-//                return BadRequest("Invalid input");
-//            }
-//            
-//            // check if the user exits in the DB
-//            var response = _shopDataController.ValidateShop(login.UserName, login.Password);
-//            
-//            // check the result from searching the DB
-//            if (response != 1) 
-//            {
-//                // if dont have a user return a bad request
-//                return NotFound("We could not find a shop corresponding the username and password");
-//            }
-//            
-//            // if we have a user then create a token for the user
-//            var token = CreateToken(login.UserName);
+            // control the user input
+            if (login.UserName == null || login.Password == null)
+            {
+                return BadRequest("Invalid input");
+            }
+            
+            // check if the user exits in the DB
+            var savedPassword = _shopDataController.ValidateShop(login.UserName);
+           
+            // check the result from searching the DB
+            if (savedPassword == null || savedPassword.Length <= 0) 
+            {
+                // if dont have a user return a bad request
+                return NotFound("We could not find a shop corresponding the username and password");
+            }
 
-            var savedPassword = HashingPassword(login.Password);
-            var compared = ComparePassword(savedPassword, "HejHej");
-
-            var isSame = savedPassword.Equals(HashingPassword(login.Password));
-
-
-            return Ok("Result: " + isSame);
+            if (!ComparePassword(savedPassword, login.Password))
+            {
+                return NotFound("We could not find a shop corresponding the username and password");
+            }
+            
+            var token = CreateToken(login.UserName);
+                
+            return Ok(token);
         }
 
         private string CreateToken(string userName)
@@ -79,7 +77,7 @@ namespace StringR.Backend.Controllers.v1
             return tokenHandler.WriteToken(token);
         }
 
-        private string HashingPassword(string stringToBeHashed)
+        public static string HashingPassword(string stringToBeHashed)
         {
             // generating the salt
             byte[] salt;
@@ -112,7 +110,6 @@ namespace StringR.Backend.Controllers.v1
             // hash the password
             var passwordHashed = new Rfc2898DeriveBytes(inputPassword, salt, 10000);
             byte[] hash = passwordHashed.GetBytes(20);
-            
             
             // validating the passwords
             var isPasswordEqual = true;
