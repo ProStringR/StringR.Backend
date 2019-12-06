@@ -153,7 +153,7 @@ namespace StringR.Backend.DataController
             stringer.Add("phone", row["stringerPhone"].ToString());
             stringer.Add("email", row["stringerEmail"].ToString());
             
-            var stringerProperty = new JProperty("stringer", customer);
+            var stringerProperty = new JProperty("stringer", stringer);
             
             // racket construction
             var racket = new JObject();

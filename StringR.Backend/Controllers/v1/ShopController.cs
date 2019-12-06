@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
@@ -8,6 +9,7 @@ using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
 {
+    [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ShopController : ControllerBase
@@ -44,6 +46,7 @@ namespace StringR.Backend.Controllers.v1
          *    POST
          * 
          */
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult PostShop([FromBody] Shop shop)
         {

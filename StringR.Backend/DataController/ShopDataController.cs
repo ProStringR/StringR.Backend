@@ -74,7 +74,7 @@ namespace StringR.Backend.DataController
         {
             var dataSet = _shopDAO.ValidateShop(userName);
 
-            return ((int) dataSet.Tables[0].Rows[0]["id"] ,dataSet.Tables[0].Rows[0]["password"].ToString());
+            return ((int) dataSet.Tables[0].Rows[0]["id"], dataSet.Tables[0].Rows[0]["password"].ToString());
         }
 
         private JObject GetShopAsJObject(DataRow row)
