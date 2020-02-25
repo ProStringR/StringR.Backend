@@ -82,8 +82,8 @@ namespace StringR.Backend.DataController
 
             var jObject = new JObject();
             
-            jObject.Add("id", (int) row["shopId"]);
-            jObject.Add("teamId", (int) row["teamId"]);
+            jObject.Add("id", row["shopId"].ToString());
+            jObject.Add("teamId", row["teamId"].ToString());
             jObject.Add("phoneNumber", row["phoneNumber"].ToString());
             jObject.Add("company", row["company"].ToString());
             
@@ -92,8 +92,8 @@ namespace StringR.Backend.DataController
             address.Add("zipCode", row["zipCode"].ToString());
             address.Add("city", row["city"].ToString());
             address.Add("country", row["country"].ToString());
-            address.Add("longitude", row["longitude"].ToString());
-            address.Add("latitude", row["latitude"].ToString());
+            address.Add("longitude", (double) row["longitude"]);
+            address.Add("latitude", (double) row["latitude"]);
             address.Add("street", row["street"].ToString());
             address.Add("addressNumber", row["addressNumber"].ToString());
             
