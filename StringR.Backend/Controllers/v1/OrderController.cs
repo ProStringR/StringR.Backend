@@ -71,7 +71,6 @@ namespace StringR.Backend.Controllers.v1
             catch (Exception e)
             {
                 return BadRequest("Failed... " + e);
-
             }
         }
         

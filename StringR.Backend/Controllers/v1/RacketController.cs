@@ -32,7 +32,7 @@ namespace StringR.Backend.Controllers.v1
          * 
          */
         [HttpPost]
-        public ActionResult PostRacket([FromBody] Racket racket)
+        public ActionResult<Racket> PostRacket([FromBody] Racket racket)
         {
             try
             {
