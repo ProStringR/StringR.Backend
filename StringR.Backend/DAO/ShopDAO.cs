@@ -105,7 +105,7 @@ namespace StringR.Backend.DAO
             try
             {
                 _dataAccessLayer.CreateParameters(1);
-                _dataAccessLayer.AddParameters(0, "userId", userName);
+                _dataAccessLayer.AddParameters(0, "email", userName);
 
                 return _dataAccessLayer.ExecuteDataSet("AuthenticateShop", CommandType.StoredProcedure);;
             }
