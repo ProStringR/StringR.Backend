@@ -12,7 +12,7 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         List<CustomerDTO> GetAllCustomers();
-        string GetCustomerById(int customerId);
+        CustomerDTO GetCustomerById(int customerId);
         
         /*
          *

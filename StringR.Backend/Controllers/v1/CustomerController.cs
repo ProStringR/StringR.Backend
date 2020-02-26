@@ -44,7 +44,7 @@ namespace StringR.Backend.Controllers.v1
         }
 
         [HttpGet("{customerId}")]
-        public ActionResult<string> GetCustomerById(int customerId)
+        public ActionResult<CustomerDTO> GetCustomerById(int customerId)
         {
             try
             {

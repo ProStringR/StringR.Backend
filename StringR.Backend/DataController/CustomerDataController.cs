@@ -36,11 +36,16 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public string GetCustomerById(int customerId)
+        public CustomerDTO GetCustomerById(int customerId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
+                List<CustomerDTO> customerDtos = JsonConvert.DeserializeObject<List<CustomerDTO>>(json);
+                
+                // No null check because error is thrown
+                // in case the user does not exist
+                return customerDtos[0];
             }
             catch (Exception e)
             {
