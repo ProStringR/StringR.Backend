@@ -2,17 +2,17 @@ namespace StringR.Backend.Models
 {
     public class Shop
     {
-        public string ShopName { get; }
-        public string ZipCode { get; }
-        public string City { get; }
-        public string Country { get; }
-        public double Longitude { get; }
-        public double Latitude { get; }
-        public string Street { get; }
-        public string AddressNumber { get; }
-        public string PhoneNumber { get; }
-        public string UserId { get; }
-        public string Password { get; }
+        public string ShopName { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public string Street { get; set; }
+        public string AddressNumber { get; set;  }
+        public string PhoneNumber { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
 
         public Shop(string shopName, string zipCode, string city, string country, double longitude, double latitude, string street, string addressNumber, string phoneNumber, string userId, string password)
         {
