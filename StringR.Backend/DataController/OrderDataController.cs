@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -39,27 +40,25 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public string GetAllOrdersForShop(int shopId)
+        public List<OrderDto> GetAllOrdersForShop(int shopId)
         {
-            DataSet dataSet;
-            var generalObject = new JArray();
-            
             try
             {
-                dataSet = _orderDAO.GetAllOrdersForShop(shopId);
+                List<OrderDto> orderDtos = new List<OrderDto>();
+                var dataSet = _orderDAO.GetAllOrdersForShop(shopId);
 
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
-                    generalObject.Add(GetOrderAsJObject(row));
+                    orderDtos.Add(new OrderDto(row));
                 }
+
+                return orderDtos;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
-            return generalObject.ToString(Formatting.None);
         }
 
         public string GetAllOrdersForShopOnStatus(int shopId, int orderStatus)

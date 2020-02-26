@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +44,7 @@ namespace StringR.Backend.Controllers.v1
         }
 
         [HttpGet("shop/{shopId}")]
-        public ActionResult<string> GetAllOrdersForShop(int shopId)
+        public ActionResult<List<OrderDto>> GetAllOrdersForShop(int shopId)
         {
             try
             {
