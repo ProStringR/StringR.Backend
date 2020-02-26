@@ -45,7 +45,6 @@ namespace StringR.Backend.Controllers.v1
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("shop/{shopId}")]
         public ActionResult<List<StringerDto>> GetStringersForShop(int shopId)
         {
@@ -65,12 +64,12 @@ namespace StringR.Backend.Controllers.v1
          *    POST
          * 
          */
-        [HttpPost]
-        public ActionResult PostStringerToTeam([FromBody] StringerToTeam stringerToTeam)
+        [HttpPost("{teamId}")]
+        public ActionResult PostStringerToTeam([FromBody] StringerToTeam stringerToTeam, int teamId)
         {
             try
             {
-                _stringerDataController.PostStringerToTeam(stringerToTeam.TeamId, stringerToTeam.Firstname, stringerToTeam.LastName, stringerToTeam.PhoneNumber, stringerToTeam.Email, stringerToTeam.PreferredRacketType);
+                _stringerDataController.PostStringerToTeam(teamId, stringerToTeam.Firstname, stringerToTeam.LastName, stringerToTeam.PhoneNumber, stringerToTeam.Email, stringerToTeam.PreferredRacketType);
                 return Ok("The stringer has been successfully added to the team");
             }
             catch (Exception e)
