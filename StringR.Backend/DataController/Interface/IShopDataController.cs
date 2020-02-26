@@ -1,4 +1,5 @@
 using System;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController.Interface
@@ -11,7 +12,7 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetShopById(int shopId);
+        ShopDto GetShopById(int shopId);
         
         /*
          *

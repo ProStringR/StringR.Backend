@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
@@ -29,7 +30,7 @@ namespace StringR.Backend.Controllers.v1
          */
 
         [HttpGet("{shopId}")]
-        public ActionResult<string> GetShopById(int shopId)
+        public ActionResult<ShopDto> GetShopById(int shopId)
         {
             try
             {
@@ -40,7 +41,7 @@ namespace StringR.Backend.Controllers.v1
                 return BadRequest("Something went Wrong");
             }
         }
-        
+
         /*
          *
          *    POST
