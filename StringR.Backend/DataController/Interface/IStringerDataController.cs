@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using StringR.Backend.DAO;
 using StringR.Backend.DTO;
 
@@ -12,7 +13,7 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         StringerDto GetStringerById(int stringerId);
-        string GetAllStringersForShop(int shopId);
+        List<StringerDto> GetAllStringersForShop(int shopId);
         
         /*
          *

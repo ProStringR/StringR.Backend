@@ -42,21 +42,20 @@ namespace StringR.Backend.DataController
             
         }
 
-        public string GetAllStringersForShop(int shopId)
+        public List<StringerDto> GetAllStringersForShop(int shopId)
         {
-            DataSet dataSet;
-
             try
             {
-                dataSet = _stringerDAO.GetAllStringersForShop(shopId);
+                var json = JsonConvert.SerializeObject(_stringerDAO.GetAllStringersForShop(shopId).Tables[0]);
+                List<StringerDto> stringerDtos = JsonConvert.DeserializeObject<List<StringerDto>>(json);
+
+                return stringerDtos;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
-            return JsonConvert.SerializeObject(dataSet.Tables[0]);
         }
 
         public void PostStringerToTeam(int teamId, string firstName, string lastName, string phoneNumber, string email,
@@ -68,6 +67,7 @@ namespace StringR.Backend.DataController
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 throw;
             }
         }
