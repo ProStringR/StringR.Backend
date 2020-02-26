@@ -1,6 +1,11 @@
-namespace StringR.Backend.DTO
+namespace StringR.Backend.DTO.Order
 {
-    public class RacketStringDto
+    /// <summary>
+    /// This class is used for OrderDTO
+    /// It is very specific to that and should
+    /// not be used for other purposes
+    /// </summary>
+    public class OrderRacketStringDto
     {
         public int Id { get; set; }
         public string Brand { get; set; }
@@ -10,7 +15,7 @@ namespace StringR.Backend.DTO
         public string Purpose { get; set; }
         public string Color { get; set; }
 
-        public RacketStringDto(int id, string brand, string model, string type, string thickness, string purpose, string color)
+        public OrderRacketStringDto(int id, string brand, string model, string type, string thickness, string purpose, string color)
         {
             Id = id;
             Brand = brand;

@@ -16,7 +16,7 @@ namespace StringR.Backend.DTO
         public OrderCustomerDto Customer { get; set; }
         public OrderStringerDto Stringer { get; set; }
         public RacketDto Racket { get; set; }
-        public RacketStringDto RacketString { get; set; }
+        public OrderRacketStringDto OrderRacketString { get; set; }
 
         public OrderDto(DataRow row)
         {
@@ -31,7 +31,7 @@ namespace StringR.Backend.DTO
             Customer = new OrderCustomerDto(row["customerFirstName"].ToString(), row["customerLastName"].ToString(), row["customerEmail"].ToString(), row["customerPhone"].ToString());
             Stringer = new OrderStringerDto(row["stringerFirstName"].ToString(), row["stringerLastName"].ToString(), row["stringerPhone"].ToString(), row["stringerEmail"].ToString());
             Racket = new RacketDto((int)row["racketId"], row["racketBrand"].ToString(), row["racketModel"].ToString(), (int) row["racketWeight"], (int) row["Racketmain"], (int) row["Racketcross"], (int) row["racketGripSize"]);
-            RacketString = new RacketStringDto((int) row["stringId"], row["stringBrand"].ToString(), row["stringModel"].ToString(), row["stringType"].ToString(), row["stringThickness"].ToString(), row["stringPurpose"].ToString(), row["stringColor"].ToString());
+            OrderRacketString = new OrderRacketStringDto((int) row["stringId"], row["stringBrand"].ToString(), row["stringModel"].ToString(), row["stringType"].ToString(), row["stringThickness"].ToString(), row["stringPurpose"].ToString(), row["stringColor"].ToString());
         }
     }
 }
