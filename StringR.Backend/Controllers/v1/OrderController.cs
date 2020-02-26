@@ -27,12 +27,6 @@ namespace StringR.Backend.Controllers.v1
          *    GET
          * 
          */
-        
-        [HttpGet]
-        public ActionResult<string> Get()
-        {
-            return BadRequest("Not implemented...");
-        }
 
         [HttpGet("{orderId}")]
         public ActionResult<string> GetOrderById(int orderId)
