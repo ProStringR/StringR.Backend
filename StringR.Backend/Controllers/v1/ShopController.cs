@@ -61,20 +61,5 @@ namespace StringR.Backend.Controllers.v1
                 return NotFound("Something went wrong creating the shop");
             }
         }
-
-        [HttpPost("postTeamWithMember")]
-        public ActionResult PostTeamToShopWithMember([FromBody] TeamToShopWithMember teamToShopWithMember)
-        {
-            try
-            {
-                _shopDataController.PostTeamToShopWithMember(teamToShopWithMember);
-                return Ok("The team has been created successfully");
-            }
-            catch (Exception e)
-            {
-                return NotFound("Something went wrong creating the team");
-            }
-        }
-
     }
 }

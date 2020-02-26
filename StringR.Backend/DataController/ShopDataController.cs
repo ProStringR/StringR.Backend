@@ -54,18 +54,6 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember)
-        {
-            try
-            {
-                _shopDAO.PostTeamToShopWithMember(teamToShopWithMember);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
-
         /*
          *
          *    Validate

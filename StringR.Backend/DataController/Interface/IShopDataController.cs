@@ -20,7 +20,6 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         void PostShop(Shop shop);
-        void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember);
 
         /*
          *
