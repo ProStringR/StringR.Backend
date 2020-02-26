@@ -14,7 +14,7 @@ namespace StringR.Backend.DataController.Interface
          */
         OrderDto GetOrderById(int orderId);
         List<OrderDto> GetAllOrdersForShop(int shopId);
-        string GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
+        List<OrderDto> GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
         
         /*
          *

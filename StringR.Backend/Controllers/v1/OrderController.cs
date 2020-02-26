@@ -58,7 +58,7 @@ namespace StringR.Backend.Controllers.v1
         }
         
         [HttpGet("shop/{shopId}/{orderStatus}")]
-        public ActionResult<string> GetAllOrdersForShop(int shopId, int orderStatus)
+        public ActionResult<List<OrderDto>> GetAllOrdersForShop(int shopId, int orderStatus)
         {
             try
             {
