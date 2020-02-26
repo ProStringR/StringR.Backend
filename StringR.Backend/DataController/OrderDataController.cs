@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
@@ -24,23 +25,18 @@ namespace StringR.Backend.DataController
          * 
          */
 
-        public string GetOrderById(int orderId)
+        public OrderDto GetOrderById(int orderId)
         {
-            JObject order;
-            
             try
             {
                 var dataSet = _orderDAO.GetOrderbyId(orderId);
-                
-                order = GetOrderAsJObject(dataSet.Tables[0].Rows[0]);
+                return new OrderDto(dataSet.Tables[0].Rows[0]);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
-            return order.ToString(Formatting.None);
         }
 
         public string GetAllOrdersForShop(int shopId)

@@ -1,3 +1,4 @@
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController.Interface
@@ -10,7 +11,7 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetOrderById(int orderId);
+        OrderDto GetOrderById(int orderId);
         string GetAllOrdersForShop(int shopId);
         string GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
         
