@@ -40,20 +40,6 @@ namespace StringR.Backend.Controllers.v1
                 return BadRequest("Failed... " + e); 
             }
         }
-        
-        [HttpGet("customers")]
-        public ActionResult<Customer> GetCustomers()
-        {
-            try
-            {
-                var customer = new Customer("jaafar", "mahdi", "als", "22", "1hej", "hej", 1, 1, 1);
-                return customer;
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Failed... " + e); 
-            }
-        }
 
         [HttpGet("{customerId}")]
         public ActionResult<string> GetCustomerById(int customerId)
