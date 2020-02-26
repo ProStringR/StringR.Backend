@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
@@ -28,15 +29,9 @@ namespace StringR.Backend.Controllers.v1
          *    GET
          * 
          */
-        
-        [HttpGet]
-        public ActionResult<string> Get()
-        {
-            return BadRequest("Not Implemented...");
-        }
-        
+
         [HttpGet("{stringerId}")]
-        public ActionResult<string> GetStringerById(int stringerId)
+        public ActionResult<StringerDto> GetStringerById(int stringerId)
         {
             try
             {
