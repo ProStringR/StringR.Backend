@@ -1,4 +1,6 @@
 
+using StringR.Backend.DTO;
+
 namespace StringR.Backend.DataController.Interface
 {
     public interface IRacketStringDataController
@@ -9,7 +11,7 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetStringById(int racketStringId);
+        RacketStringDto GetStringById(int racketStringId);
         string GetAllStringsForShop(int shopId);
         
         /*

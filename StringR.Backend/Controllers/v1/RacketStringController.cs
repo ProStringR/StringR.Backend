@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
@@ -29,7 +30,7 @@ namespace StringR.Backend.Controllers.v1
          */
 
         [HttpGet("{racketStringId}")]
-        public ActionResult<string> GetRacketStringById(int racketStringId)
+        public ActionResult<RacketStringDto> GetRacketStringById(int racketStringId)
         {
             try
             {

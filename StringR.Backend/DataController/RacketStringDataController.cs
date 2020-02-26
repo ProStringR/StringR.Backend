@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 
 namespace StringR.Backend.DataController
 {
@@ -21,11 +23,16 @@ namespace StringR.Backend.DataController
          * 
          */
         
-        public string GetStringById(int racketStringId)
+        public RacketStringDto GetStringById(int racketStringId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
+                List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
+                
+                // No null check because error is thrown
+                // in case the user does not exist
+                return racketStringDtos[0];
             }
             catch (Exception e)
             {
