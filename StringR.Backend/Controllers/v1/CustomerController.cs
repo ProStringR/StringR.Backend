@@ -31,7 +31,7 @@ namespace StringR.Backend.Controllers.v1
          */
 
         [HttpGet("all-customers")]
-        public ActionResult<List<CustomerDTO>> GetAllCustomers()
+        public ActionResult<List<CustomerDto>> GetAllCustomers()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace StringR.Backend.Controllers.v1
         }
 
         [HttpGet("{customerId}")]
-        public ActionResult<CustomerDTO> GetCustomerById(int customerId)
+        public ActionResult<CustomerDto> GetCustomerById(int customerId)
         {
             try
             {

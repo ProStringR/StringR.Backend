@@ -11,8 +11,8 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        List<CustomerDTO> GetAllCustomers();
-        CustomerDTO GetCustomerById(int customerId);
+        List<CustomerDto> GetAllCustomers();
+        CustomerDto GetCustomerById(int customerId);
         
         /*
          *

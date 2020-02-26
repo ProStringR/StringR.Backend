@@ -22,12 +22,12 @@ namespace StringR.Backend.DataController
          *    GET
          * 
          */
-        public List<CustomerDTO> GetAllCustomers()
+        public List<CustomerDto> GetAllCustomers()
         {
             try
             {
                 var json = JsonConvert.SerializeObject(_customerDAO.GetAllCustomers().Tables[0]);
-                return JsonConvert.DeserializeObject<List<CustomerDTO>>(json);
+                return JsonConvert.DeserializeObject<List<CustomerDto>>(json);
             }
             catch (Exception e)
             {
@@ -36,12 +36,12 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public CustomerDTO GetCustomerById(int customerId)
+        public CustomerDto GetCustomerById(int customerId)
         {
             try
             {
                 var json = JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
-                List<CustomerDTO> customerDtos = JsonConvert.DeserializeObject<List<CustomerDTO>>(json);
+                List<CustomerDto> customerDtos = JsonConvert.DeserializeObject<List<CustomerDto>>(json);
                 
                 // No null check because error is thrown
                 // in case the user does not exist
