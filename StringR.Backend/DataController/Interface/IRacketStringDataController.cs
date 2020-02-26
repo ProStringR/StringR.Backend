@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using StringR.Backend.DTO;
 
 namespace StringR.Backend.DataController.Interface
@@ -12,7 +13,7 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         RacketStringDto GetStringById(int racketStringId);
-        string GetAllStringsForShop(int shopId);
+        List<RacketStringDto> GetAllStringsForShop(int shopId);
         
         /*
          *

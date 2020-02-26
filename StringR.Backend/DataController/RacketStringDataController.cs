@@ -41,11 +41,14 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public string GetAllStringsForShop(int shopId)
+        public List<RacketStringDto> GetAllStringsForShop(int shopId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_racketStringDAO.GetAllStringsForShop(shopId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_racketStringDAO.GetAllStringsForShop(shopId).Tables[0]);
+                List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
+
+                return racketStringDtos;
             }
             catch (Exception e)
             {
