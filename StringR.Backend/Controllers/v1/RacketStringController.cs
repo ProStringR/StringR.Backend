@@ -43,8 +43,7 @@ namespace StringR.Backend.Controllers.v1
                 return BadRequest("Something went wrong");
             }
         }
-
-        [AllowAnonymous]
+        
         [HttpGet("shop/{shopId}")]
         public ActionResult<List<RacketStringDto>> GetAllStringsForShop(int shopId)
         {
@@ -70,12 +69,13 @@ namespace StringR.Backend.Controllers.v1
          *    PUT
          * 
          */
-        [HttpPut]
-        public ActionResult PutRacketStringToStorage([FromBody] StringToStorageTransaction stringToStorageTransaction)
+        
+        [HttpPut("shop/{stringId}")]
+        public ActionResult PutRacketStringToStorage([FromBody] StringToStorageTransaction stringToStorageTransaction, int stringId)
         {
             try
             {
-                _racketStringDataController.PutRacketStringToStorage(stringToStorageTransaction.StringId, stringToStorageTransaction.Price, stringToStorageTransaction.TransactionDate, stringToStorageTransaction.LengthAdded);
+                _racketStringDataController.PutRacketStringToStorage(stringId, stringToStorageTransaction.Price, stringToStorageTransaction.TransactionDate, stringToStorageTransaction.LengthAdded);
                 return Ok("Your string is now updated");
             }
             catch (Exception e)
