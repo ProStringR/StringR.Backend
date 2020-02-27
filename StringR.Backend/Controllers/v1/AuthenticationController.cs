@@ -31,18 +31,18 @@ namespace StringR.Backend.Controllers.v1
             _shopDataController = new ShopDataController(new ShopDAO(configuration));
         }
         
-        [HttpPost]
-        public ActionResult<string> ShopLogin([FromBody] UserForAccess login)
+        [HttpPost("shop")]
+        public ActionResult<AuthenticateResponse> ShopLogin([FromBody] UserForAccess login)
         {
 
             // control the user input
-            if (login.UserName == null || login.Password == null)
+            if (login.Email == null || login.Password == null)
             {
                 return BadRequest("Invalid input");
             }
             
             // check if the user exits in the DB
-            var response = _shopDataController.ValidateShop(login.UserName);
+            var response = _shopDataController.ValidateShop(login.Email);
            
             // check the result from searching the DB
             if (response.password == null || response.password.Length <= 0) 
@@ -56,9 +56,9 @@ namespace StringR.Backend.Controllers.v1
                 return NotFound("We could not find a shop corresponding the username and password");
             }
             
-            var token = CreateToken(login.UserName);
+            var token = CreateToken(login.Email);
             
-            var authenticationResponse = new AuthenticateResponse(token, response.shopId, login.UserName + " is successfully authenticated");
+            var authenticationResponse = new AuthenticateResponse(token, response.shopId, login.Email + " is successfully authenticated");
                 
             return Ok(authenticationResponse);
         }
