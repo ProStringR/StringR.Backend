@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using StringR.Backend.DTO;
+
 namespace StringR.Backend.DataController.Interface
 {
     public interface ICustomerDataController
@@ -8,8 +11,8 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetAllCustomers();
-        string GetCustomerById(int customerId);
+        List<CustomerDto> GetAllCustomers();
+        CustomerDto GetCustomerById(int customerId);
         
         /*
          *

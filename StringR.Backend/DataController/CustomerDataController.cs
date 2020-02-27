@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 
 namespace StringR.Backend.DataController
 {
@@ -20,11 +23,12 @@ namespace StringR.Backend.DataController
          *    GET
          * 
          */
-        public string GetAllCustomers()
+        public List<CustomerDto> GetAllCustomers()
         {
             try
             {
-                return JsonConvert.SerializeObject(_customerDAO.GetAllCustomers().Tables[0]);
+                var json = JsonConvert.SerializeObject(_customerDAO.GetAllCustomers().Tables[0]);
+                return JsonConvert.DeserializeObject<List<CustomerDto>>(json);
             }
             catch (Exception e)
             {
@@ -33,11 +37,14 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public string GetCustomerById(int customerId)
+        public CustomerDto GetCustomerById(int customerId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
+                List<CustomerDto> customerDtos = JsonConvert.DeserializeObject<List<CustomerDto>>(json);
+
+                return customerDtos.FirstOrDefault();
             }
             catch (Exception e)
             {

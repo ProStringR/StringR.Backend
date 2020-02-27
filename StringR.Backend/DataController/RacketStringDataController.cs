@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
 {
@@ -21,11 +25,14 @@ namespace StringR.Backend.DataController
          * 
          */
         
-        public string GetStringById(int racketStringId)
+        public RacketStringDto GetStringById(int racketStringId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
+                List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
+
+                return racketStringDtos.FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -34,11 +41,14 @@ namespace StringR.Backend.DataController
             }
         }
 
-        public string GetAllStringsForShop(int shopId)
+        public List<RacketStringDto> GetAllStringsForShop(int shopId)
         {
             try
             {
-                return JsonConvert.SerializeObject(_racketStringDAO.GetAllStringsForShop(shopId).Tables[0]);
+                var json = JsonConvert.SerializeObject(_racketStringDAO.GetAllStringsForShop(shopId).Tables[0]);
+                List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
+
+                return racketStringDtos;
             }
             catch (Exception e)
             {
@@ -61,8 +71,20 @@ namespace StringR.Backend.DataController
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 throw;
             }
+        }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+
+        public void PostRacketStringToStorage(RacketString racketString)
+        {
+            _racketStringDAO.PostRacketStringToStorage(racketString);
         }
     }
 }

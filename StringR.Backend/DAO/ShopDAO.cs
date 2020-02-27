@@ -71,30 +71,6 @@ namespace StringR.Backend.DAO
             }
         }
 
-        public void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember)
-        {
-            _dataAccessLayer.BeginTransaction();
-            try
-            {
-                _dataAccessLayer.CreateParameters(6);
-                _dataAccessLayer.AddParameters(0, "firstName", teamToShopWithMember.FirstName);
-                _dataAccessLayer.AddParameters(1, "lastName", teamToShopWithMember.LastName);
-                _dataAccessLayer.AddParameters(2, "phoneNumber", teamToShopWithMember.PhoneNumber);
-                _dataAccessLayer.AddParameters(3, "email", teamToShopWithMember.Email);
-                _dataAccessLayer.AddParameters(4, "preferredRacketType", teamToShopWithMember.PreferredRacketType);
-                _dataAccessLayer.AddParameters(5, "shopId", teamToShopWithMember.ShopId);
-
-                _dataAccessLayer.ExecuteScalar("CreateShop", CommandType.StoredProcedure);
-                
-                _dataAccessLayer.CommitTransaction();
-            }
-            catch (Exception e)
-            {
-                _dataAccessLayer.RollbackTransaction();
-                throw;
-            }
-        }
-
         /*
          *
          *    Validate

@@ -2,18 +2,18 @@ namespace StringR.Backend.Models
 {
     public class Order
     {
-        public int customerId { get; }
-        public int stringerId { get; }
-        public int shopId { get; }
-        public string racketModel { get; }
-        public int racketBrand { get; }
-        public double tensionVertical { get; }
-        public double tensionHorizontal { get; }
-        public int stringId { get; }
-        public long deliveryDate { get; }
-        public double price { get; }
-        public string comment { get; }
-        public long datePlaced { get; }
+        public int CustomerId { get; set; }
+        public int StringerId { get; set; }
+        public int ShopId { get; set; }
+        public string RacketModel { get; set; }
+        public int RacketBrand { get; set; }
+        public double TensionVertical { get; set; }
+        public double TensionHorizontal { get; set; }
+        public int StringId { get; set; }
+        public long DeliveryDate { get; set; }
+        public double Price { get; set; }
+        public string Comment { get; set; }
+        public long DatePlaced { get; set; }
 
         public Order(
             int customerId, 
@@ -29,18 +29,18 @@ namespace StringR.Backend.Models
             string comment, 
             long datePlaced)
         {
-            this.customerId = customerId;
-            this.stringerId = stringerId;
-            this.shopId = shopId;
-            this.racketModel = racketModel;
-            this.racketBrand = racketBrand;
-            this.tensionVertical = tensionVertical;
-            this.tensionHorizontal = tensionHorizontal;
-            this.stringId = stringId;
-            this.deliveryDate = deliveryDate;
-            this.price = price;
-            this.comment = comment;
-            this.datePlaced = datePlaced;
+            this.CustomerId = customerId;
+            this.StringerId = stringerId;
+            this.ShopId = shopId;
+            this.RacketModel = racketModel;
+            this.RacketBrand = racketBrand;
+            this.TensionVertical = tensionVertical;
+            this.TensionHorizontal = tensionHorizontal;
+            this.StringId = stringId;
+            this.DeliveryDate = deliveryDate;
+            this.Price = price;
+            this.Comment = comment;
+            this.DatePlaced = datePlaced;
         }
     }
 }

@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
@@ -27,15 +29,9 @@ namespace StringR.Backend.Controllers.v1
          *    GET
          * 
          */
-        
-        [HttpGet]
-        public ActionResult<string> Get()
-        {
-            return BadRequest("Not implemented...");
-        }
 
         [HttpGet("{orderId}")]
-        public ActionResult<string> GetOrderById(int orderId)
+        public ActionResult<OrderDto> GetOrderById(int orderId)
         {
             try
             {
@@ -48,7 +44,7 @@ namespace StringR.Backend.Controllers.v1
         }
 
         [HttpGet("shop/{shopId}")]
-        public ActionResult<string> GetAllOrdersForShop(int shopId)
+        public ActionResult<List<OrderDto>> GetAllOrdersForShop(int shopId)
         {
             try
             {
@@ -62,7 +58,7 @@ namespace StringR.Backend.Controllers.v1
         }
         
         [HttpGet("shop/{shopId}/{orderStatus}")]
-        public ActionResult<string> GetAllOrdersForShop(int shopId, int orderStatus)
+        public ActionResult<List<OrderDto>> GetAllOrdersForShop(int shopId, int orderStatus)
         {
             try
             {

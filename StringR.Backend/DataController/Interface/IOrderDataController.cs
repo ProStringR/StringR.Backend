@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController.Interface
@@ -10,9 +12,9 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetOrderById(int orderId);
-        string GetAllOrdersForShop(int shopId);
-        string GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
+        OrderDto GetOrderById(int orderId);
+        List<OrderDto> GetAllOrdersForShop(int shopId);
+        List<OrderDto> GetAllOrdersForShopOnStatus(int shopId, int orderStatus);
         
         /*
          *

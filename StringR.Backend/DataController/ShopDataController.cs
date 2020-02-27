@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
@@ -23,11 +24,11 @@ namespace StringR.Backend.DataController
          * 
          */
 
-        public string GetShopById(int shopId)
+        public ShopDto GetShopById(int shopId)
         {
             try
             {
-                return JsonConvert.SerializeObject(GetShopAsJObject(_shopDAO.GetShopById(shopId).Tables[0].Rows[0]));
+                return new ShopDto(_shopDAO.GetShopById(shopId).Tables[0].Rows[0]);
             }
             catch (Exception e)
             {
@@ -46,18 +47,6 @@ namespace StringR.Backend.DataController
             try
             {
                 _shopDAO.PostShop(shop);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
-
-        public void PostTeamToShopWithMember(TeamToShopWithMember teamToShopWithMember)
-        {
-            try
-            {
-                _shopDAO.PostTeamToShopWithMember(teamToShopWithMember);
             }
             catch (Exception e)
             {

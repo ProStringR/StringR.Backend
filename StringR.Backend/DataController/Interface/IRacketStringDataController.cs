@@ -1,4 +1,8 @@
 
+using System.Collections.Generic;
+using StringR.Backend.DTO;
+using StringR.Backend.Models;
+
 namespace StringR.Backend.DataController.Interface
 {
     public interface IRacketStringDataController
@@ -9,14 +13,15 @@ namespace StringR.Backend.DataController.Interface
          *    GET
          * 
          */
-        string GetStringById(int racketStringId);
-        string GetAllStringsForShop(int shopId);
+        RacketStringDto GetStringById(int racketStringId);
+        List<RacketStringDto> GetAllStringsForShop(int shopId);
         
         /*
          *
          *    POST
          * 
          */
+        void PostRacketStringToStorage(RacketString racketString);
 
         /*
          *

@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using StringR.Backend.DataController;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
+using StringR.Backend.DTO;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.Controllers.v1
@@ -29,7 +31,7 @@ namespace StringR.Backend.Controllers.v1
          */
 
         [HttpGet("{racketStringId}")]
-        public ActionResult<string> GetRacketStringById(int racketStringId)
+        public ActionResult<RacketStringDto> GetRacketStringById(int racketStringId)
         {
             try
             {
@@ -41,9 +43,9 @@ namespace StringR.Backend.Controllers.v1
                 return BadRequest("Something went wrong");
             }
         }
-
+        
         [HttpGet("shop/{shopId}")]
-        public ActionResult<string> GetAllStringsForShop(int shopId)
+        public ActionResult<List<RacketStringDto>> GetAllStringsForShop(int shopId)
         {
             try
             {
@@ -62,17 +64,33 @@ namespace StringR.Backend.Controllers.v1
          * 
          */
 
+        [HttpPost]
+        public ActionResult PostRacketStringToStorage(RacketString racketString)
+        {
+            try
+            {
+                _racketStringDataController.PostRacketStringToStorage(racketString);
+                return Ok("RacketString was successfully created");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest("Something went wrong creating RacketString");
+            }
+        }
+
         /*
          *
          *    PUT
          * 
          */
-        [HttpPut]
-        public ActionResult PutRacketStringToStorage([FromBody] StringToStorageTransaction stringToStorageTransaction)
+        
+        [HttpPut("shop/{stringId}")]
+        public ActionResult PutRacketStringToStorage([FromBody] StringToStorageTransaction stringToStorageTransaction, int stringId)
         {
             try
             {
-                _racketStringDataController.PutRacketStringToStorage(stringToStorageTransaction.StringId, stringToStorageTransaction.Price, stringToStorageTransaction.TransactionDate, stringToStorageTransaction.LengthAdded);
+                _racketStringDataController.PutRacketStringToStorage(stringId, stringToStorageTransaction.Price, stringToStorageTransaction.TransactionDate, stringToStorageTransaction.LengthAdded);
                 return Ok("Your string is now updated");
             }
             catch (Exception e)

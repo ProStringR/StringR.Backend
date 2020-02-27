@@ -77,18 +77,18 @@ namespace StringR.Backend.DAO
             try
             {
                 _dataAccessLayer.CreateParameters(12);
-                _dataAccessLayer.AddParameters(0, "customerId", order.customerId);
-                _dataAccessLayer.AddParameters(1, "stringerId", order.stringerId);
-                _dataAccessLayer.AddParameters(2, "shopId", order.shopId);
-                _dataAccessLayer.AddParameters(3, "racketModel", order.racketModel);
-                _dataAccessLayer.AddParameters(4, "racketBrand", order.racketBrand);
-                _dataAccessLayer.AddParameters(5, "tensionVertical", order.tensionVertical);
-                _dataAccessLayer.AddParameters(6, "tensionHorizontal", order.tensionHorizontal);
-                _dataAccessLayer.AddParameters(7, "stringId", order.stringId);
-                _dataAccessLayer.AddParameters(8, "deliveryDate", order.deliveryDate);
-                _dataAccessLayer.AddParameters(9, "price", order.price);
-                _dataAccessLayer.AddParameters(10, "comment", order.comment);
-                _dataAccessLayer.AddParameters(11, "datePlaced", order.datePlaced);
+                _dataAccessLayer.AddParameters(0, "customerId", order.CustomerId);
+                _dataAccessLayer.AddParameters(1, "stringerId", order.StringerId);
+                _dataAccessLayer.AddParameters(2, "shopId", order.ShopId);
+                _dataAccessLayer.AddParameters(3, "racketModel", order.RacketModel);
+                _dataAccessLayer.AddParameters(4, "racketBrand", order.RacketBrand);
+                _dataAccessLayer.AddParameters(5, "tensionVertical", order.TensionVertical);
+                _dataAccessLayer.AddParameters(6, "tensionHorizontal", order.TensionHorizontal);
+                _dataAccessLayer.AddParameters(7, "stringId", order.StringId);
+                _dataAccessLayer.AddParameters(8, "deliveryDate", order.DeliveryDate);
+                _dataAccessLayer.AddParameters(9, "price", order.Price);
+                _dataAccessLayer.AddParameters(10, "comment", order.Comment);
+                _dataAccessLayer.AddParameters(11, "datePlaced", order.DatePlaced);
 
                 _dataAccessLayer.ExecuteScalar("CreateOrder", CommandType.StoredProcedure);
 
