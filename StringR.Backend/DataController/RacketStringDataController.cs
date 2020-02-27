@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
@@ -29,10 +30,8 @@ namespace StringR.Backend.DataController
             {
                 var json = JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
                 List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
-                
-                // No null check because error is thrown
-                // in case the user does not exist
-                return racketStringDtos[0];
+
+                return racketStringDtos.FirstOrDefault();
             }
             catch (Exception e)
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
@@ -42,10 +43,8 @@ namespace StringR.Backend.DataController
             {
                 var json = JsonConvert.SerializeObject(_customerDAO.GetCustomerById(customerId).Tables[0]);
                 List<CustomerDto> customerDtos = JsonConvert.DeserializeObject<List<CustomerDto>>(json);
-                
-                // No null check because error is thrown
-                // in case the user does not exist
-                return customerDtos[0];
+
+                return customerDtos.FirstOrDefault();
             }
             catch (Exception e)
             {
