@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
 using StringR.Backend.DTO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
 {
@@ -73,6 +74,17 @@ namespace StringR.Backend.DataController
                 Console.WriteLine(e);
                 throw;
             }
+        }
+        
+        /*
+         *
+         *    POST
+         * 
+         */
+
+        public void PostRacketStringToStorage(RacketString racketString)
+        {
+            _racketStringDAO.PostRacketStringToStorage(racketString);
         }
     }
 }

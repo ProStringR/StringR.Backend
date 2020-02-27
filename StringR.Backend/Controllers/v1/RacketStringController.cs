@@ -64,6 +64,21 @@ namespace StringR.Backend.Controllers.v1
          * 
          */
 
+        [HttpPost]
+        public ActionResult PostRacketStringToStorage(RacketString racketString)
+        {
+            try
+            {
+                _racketStringDataController.PostRacketStringToStorage(racketString);
+                return Ok("RacketString was successfully created");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest("Something went wrong creating RacketString");
+            }
+        }
+
         /*
          *
          *    PUT

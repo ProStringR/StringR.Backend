@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using StringR.Backend.DTO;
+using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController.Interface
 {
@@ -20,6 +21,7 @@ namespace StringR.Backend.DataController.Interface
          *    POST
          * 
          */
+        void PostRacketStringToStorage(RacketString racketString);
 
         /*
          *
