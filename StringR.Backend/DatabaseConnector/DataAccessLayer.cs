@@ -420,7 +420,7 @@ namespace Database.DatabaseConnector
 
             public static DataAccessLayerBaseClass GetDataAccessLayer(IConfiguration configuration)
             {
-                ConnectionString = Environment.GetEnvironmentVariable("connectionString");
+                ConnectionString = "server=167.172.160.57;port=3306;database=testDB;user=root;password=prostringr;"; //Environment.GetEnvironmentVariable("connectionString");
                 DataProviderTypeString = "MySql";
                 // Make sure application configuration file contains required configuration keys
                 if (DataProviderTypeString == null || ConnectionString == null)
