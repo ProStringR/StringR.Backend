@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using StringR.Backend.DAO;
 using StringR.Backend.DataController.Interface;
+using StringR.Backend.DTO;
 using StringR.Backend.DTO.InitialFetchData;
 
 namespace StringR.Backend.DataController
@@ -39,6 +40,22 @@ namespace StringR.Backend.DataController
                 List<PurposeDto> purposeDtos = JsonConvert.DeserializeObject<List<PurposeDto>>(json);
 
                 return purposeDtos;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public List<RacketBrandDto> GetAllRacketBrands()
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_staticDataDao.GetAllRacketBrands().Tables[0]);
+                List<RacketBrandDto> racketBrandDtos = JsonConvert.DeserializeObject<List<RacketBrandDto>>(json);
+
+                return racketBrandDtos;
             }
             catch (Exception e)
             {

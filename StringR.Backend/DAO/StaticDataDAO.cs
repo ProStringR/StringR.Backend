@@ -41,5 +41,18 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        public DataSet GetAllRacketBrands()
+        {
+            try
+            {
+                return _dataAccessLayer.ExecuteDataSet("GetAllRacketBrands", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

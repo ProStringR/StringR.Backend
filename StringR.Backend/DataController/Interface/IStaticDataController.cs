@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StringR.Backend.DTO;
 using StringR.Backend.DTO.InitialFetchData;
 
 namespace StringR.Backend.DataController.Interface
@@ -7,5 +8,6 @@ namespace StringR.Backend.DataController.Interface
     {
         List<ColorDto> GetAllColors();
         List<PurposeDto> GetAllPurposes();
+        List<RacketBrandDto> GetAllRacketBrands();
     }
 }

@@ -32,5 +32,12 @@ namespace StringR.Backend.Controllers.v1
         {
             return _staticDataController.GetAllPurposes();
         }
+        
+        [AllowAnonymous]
+        [HttpGet("all-racket-brands")]
+        public ActionResult<List<RacketBrandDto>> GetAllRacketBrands()
+        {
+            return _staticDataController.GetAllRacketBrands();
+        }
     }
 }
