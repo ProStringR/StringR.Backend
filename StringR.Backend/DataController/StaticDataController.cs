@@ -79,5 +79,21 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+
+        public List<StringTypeDto> GetAllStringTypes()
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_staticDataDao.GetAllStringTypes().Tables[0]);
+                List<StringTypeDto> stringTypeDtos = JsonConvert.DeserializeObject<List<StringTypeDto>>(json);
+
+                return stringTypeDtos;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

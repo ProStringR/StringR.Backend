@@ -46,5 +46,12 @@ namespace StringR.Backend.Controllers.v1
         {
             return _staticDataController.GetAllStringBrands();
         }
+        
+        [AllowAnonymous]
+        [HttpGet("all-string-types")]
+        public ActionResult<List<StringTypeDto>> GetAllStringTypes()
+        {
+            return _staticDataController.GetAllStringTypes();
+        }
     }
 }

@@ -67,5 +67,18 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        public DataSet GetAllStringTypes()
+        {
+            try
+            {
+                return _dataAccessLayer.ExecuteDataSet("GetAllStringTypes", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

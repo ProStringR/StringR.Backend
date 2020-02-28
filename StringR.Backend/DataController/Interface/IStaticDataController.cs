@@ -10,5 +10,6 @@ namespace StringR.Backend.DataController.Interface
         List<PurposeDto> GetAllPurposes();
         List<RacketBrandDto> GetAllRacketBrands();
         List<StringBrandDto> GetAllStringBrands();
+        List<StringTypeDto> GetAllStringTypes();
     }
 }
