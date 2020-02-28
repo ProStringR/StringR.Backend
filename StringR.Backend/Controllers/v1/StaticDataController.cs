@@ -25,5 +25,12 @@ namespace StringR.Backend.Controllers.v1
         {
             return _staticDataController.GetAllColors();
         }
+        
+        [AllowAnonymous]
+        [HttpGet("all-purposes")]
+        public ActionResult<List<PurposeDto>> GetAllPurposes()
+        {
+            return _staticDataController.GetAllPurposes();
+        }
     }
 }

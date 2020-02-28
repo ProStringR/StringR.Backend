@@ -30,5 +30,21 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+
+        public List<PurposeDto> GetAllPurposes()
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_staticDataDao.GetAllPurposes().Tables[0]);
+                List<PurposeDto> purposeDtos = JsonConvert.DeserializeObject<List<PurposeDto>>(json);
+
+                return purposeDtos;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

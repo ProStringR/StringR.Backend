@@ -21,7 +21,19 @@ namespace StringR.Backend.DAO
             try
             {
                 return _dataAccessLayer.ExecuteDataSet("GetAllColors", CommandType.StoredProcedure);
-                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
+        public DataSet GetAllPurposes()
+        {
+            try
+            {
+                return _dataAccessLayer.ExecuteDataSet("GetAllPurposes", CommandType.StoredProcedure);
             }
             catch (Exception e)
             {
