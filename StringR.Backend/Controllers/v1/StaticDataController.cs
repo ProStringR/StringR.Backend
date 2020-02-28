@@ -39,5 +39,12 @@ namespace StringR.Backend.Controllers.v1
         {
             return _staticDataController.GetAllRacketBrands();
         }
+        
+        [AllowAnonymous]
+        [HttpGet("all-string-brands")]
+        public ActionResult<List<StringBrandDto>> GetAllStringBrands()
+        {
+            return _staticDataController.GetAllStringBrands();
+        }
     }
 }

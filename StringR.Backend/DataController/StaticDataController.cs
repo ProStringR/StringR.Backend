@@ -63,5 +63,21 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
+
+        public List<StringBrandDto> GetAllStringBrands()
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_staticDataDao.GetAllStringBrands().Tables[0]);
+                List<StringBrandDto> stringBrandDtos = JsonConvert.DeserializeObject<List<StringBrandDto>>(json);
+
+                return stringBrandDtos;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

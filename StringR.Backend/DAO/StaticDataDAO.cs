@@ -54,5 +54,18 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        public DataSet GetAllStringBrands()
+        {
+            try
+            {
+                return _dataAccessLayer.ExecuteDataSet("GetAllStringBrands", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }
