@@ -8,8 +8,8 @@ namespace StringR.Backend.DTO
         public string StringModel { get; set; }
         public string StringType { get; set; }
         public string StringBrand { get; set; }
-        public double Thickness { get; set; }
-        public string Purpose { get; set; }
-        public string Color { get; set; }
+        public double StringThickness { get; set; }
+        public string StringPurpose { get; set; }
+        public string StringColor { get; set; }
     }
 }
