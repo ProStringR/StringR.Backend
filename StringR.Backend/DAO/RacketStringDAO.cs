@@ -48,6 +48,21 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+
+        public DataSet GetStringPurchaseHistory(int stringId)
+        {
+            try
+            {
+                _dataAccessLayer.CreateParameters(1);
+                _dataAccessLayer.AddParameters(0, "stringId", stringId);
+                return _dataAccessLayer.ExecuteDataSet("GetStringPurchaseHistory", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         
         /*
          *

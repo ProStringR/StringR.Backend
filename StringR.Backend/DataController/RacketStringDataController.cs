@@ -32,7 +32,14 @@ namespace StringR.Backend.DataController
                 var json = JsonConvert.SerializeObject(_racketStringDAO.GetStringById(racketStringId).Tables[0]);
                 List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
 
-                return racketStringDtos.FirstOrDefault();
+                var racketString = racketStringDtos.FirstOrDefault();
+
+                if (racketString != null)
+                {
+                    racketString.PurchaseHistory = GetPurchaseHistoryForString(racketStringId);
+                }
+
+                return racketString;
             }
             catch (Exception e)
             {
@@ -47,6 +54,11 @@ namespace StringR.Backend.DataController
             {
                 var json = JsonConvert.SerializeObject(_racketStringDAO.GetAllStringsForShop(shopId).Tables[0]);
                 List<RacketStringDto> racketStringDtos = JsonConvert.DeserializeObject<List<RacketStringDto>>(json);
+                
+                racketStringDtos.ForEach(racketStringDto =>
+                    {
+                        racketStringDto.PurchaseHistory = GetPurchaseHistoryForString(racketStringDto.StringId);
+                    });
 
                 return racketStringDtos;
             }
@@ -57,6 +69,23 @@ namespace StringR.Backend.DataController
             }
         }
 
+        private List<StringPurchaseHistoryDto> GetPurchaseHistoryForString(int stringId)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_racketStringDAO.GetStringPurchaseHistory(stringId).Tables[0]);
+                List<StringPurchaseHistoryDto> purchaseHistory =
+                    JsonConvert.DeserializeObject<List<StringPurchaseHistoryDto>>(json);
+
+                return purchaseHistory;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        } 
+        
         /*
          *
          *    PUT
