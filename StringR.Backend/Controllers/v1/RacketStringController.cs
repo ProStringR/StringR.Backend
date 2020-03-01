@@ -98,5 +98,26 @@ namespace StringR.Backend.Controllers.v1
                 return NotFound("Something went wrong updating the string");
             }
         }
+        
+        /*
+         *
+         *    Delete
+         * 
+         */
+
+        [HttpDelete("delete/{stringId}")]
+        public ActionResult DeleteRacketString(int stringId)
+        {
+            try
+            {
+                _racketStringDataController.DeleteRacketString(stringId);
+                return Ok("String deleted softly");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

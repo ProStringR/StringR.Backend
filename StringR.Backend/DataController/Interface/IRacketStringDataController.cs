@@ -29,5 +29,12 @@ namespace StringR.Backend.DataController.Interface
          * 
          */
         void PutRacketStringToStorage(int stringId, double price, long transactionDate, int lengthAdded);
+        
+        /*
+        *
+        *    Delete
+        * 
+        */
+        void DeleteRacketString(int stringId);
     }
 }

@@ -104,7 +104,17 @@ namespace StringR.Backend.DataController
                 throw;
             }
         }
-        
+
+        /*
+         *
+         * Delete
+         * 
+         */
+        public void DeleteRacketString(int stringId)
+        {
+            _racketStringDAO.DeleteRacketString(stringId);
+        }
+
         /*
          *
          *    POST

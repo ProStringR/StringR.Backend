@@ -130,5 +130,26 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+        
+        /*
+         *
+         *    Delete
+         * 
+         */
+
+        public void DeleteRacketString(int stringId)
+        {
+            try
+            {
+                _dataAccessLayer.CreateParameters(1);
+                _dataAccessLayer.AddParameters(0, "stringId", stringId);
+                _dataAccessLayer.ExecuteScalar("DeleteRacketString", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }
