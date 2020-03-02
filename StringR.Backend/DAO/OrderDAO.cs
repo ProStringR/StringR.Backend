@@ -65,6 +65,22 @@ namespace StringR.Backend.DAO
                 throw;
             }
         }
+
+        public DataSet GetOrderHistory(int orderId)
+        {
+            try
+            {
+                _dataAccessLayer.CreateParameters(1);
+                _dataAccessLayer.AddParameters(0, "orderId", orderId);
+
+                return _dataAccessLayer.ExecuteDataSet("GetOrderHistory", CommandType.StoredProcedure);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        } 
         
         /*
          *

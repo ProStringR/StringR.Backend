@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using StringR.Backend.DataController.Interface;
 using StringR.Backend.DAO;
 using StringR.Backend.DTO;
+using StringR.Backend.DTO.Order;
 using StringR.Backend.Models;
 
 namespace StringR.Backend.DataController
@@ -31,7 +32,11 @@ namespace StringR.Backend.DataController
             try
             {
                 var dataSet = _orderDAO.GetOrderbyId(orderId);
-                return new OrderDto(dataSet.Tables[0].Rows[0]);
+                var order = new OrderDto(dataSet.Tables[0].Rows[0]);
+
+                order.OrderHistory = GetHistoryForOrder(orderId);
+
+                return order;
             }
             catch (Exception e)
             {
@@ -50,6 +55,11 @@ namespace StringR.Backend.DataController
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
                     orderDtos.Add(new OrderDto(row));
+                }
+
+                foreach (var orderDto in orderDtos)
+                {
+                    orderDto.OrderHistory = GetHistoryForOrder(orderDto.Id);
                 }
 
                 return orderDtos;
@@ -73,6 +83,11 @@ namespace StringR.Backend.DataController
                     orderDtos.Add(new OrderDto(row));
                 }
 
+                foreach (var orderDto in orderDtos)
+                {
+                    orderDto.OrderHistory = GetHistoryForOrder(orderDto.Id);
+                }
+
                 return orderDtos;
             }
             catch (Exception e)
@@ -80,6 +95,14 @@ namespace StringR.Backend.DataController
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        private List<OrderHistoryDto> GetHistoryForOrder(int orderId)
+        {
+            var json = JsonConvert.SerializeObject(_orderDAO.GetOrderHistory(orderId).Tables[0]);
+            List<OrderHistoryDto> history = JsonConvert.DeserializeObject<List<OrderHistoryDto>>(json);
+
+            return history;
         }
 
         public void PostOrder(Order order)

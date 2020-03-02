@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using Newtonsoft.Json.Linq;
 using StringR.Backend.DTO.Order;
@@ -18,6 +19,7 @@ namespace StringR.Backend.DTO
         public OrderStringerDto Stringer { get; set; }
         public RacketDto Racket { get; set; }
         public OrderRacketStringDto RacketString { get; set; }
+        public List<OrderHistoryDto> OrderHistory { get; set; }
 
         public OrderDto(DataRow row)
         {
@@ -29,6 +31,7 @@ namespace StringR.Backend.DTO
             DeliveryDate = (long) row["deliveryDate"];
             TensionVertical = (double) row["tensionVertical"];
             TensionHorizontal = (double) row["tensionHorizontal"];
+            OrderHistory = new List<OrderHistoryDto>();
             
             Customer = new OrderCustomerDto(row["customerFirstName"].ToString(), row["customerLastName"].ToString(), row["customerEmail"].ToString(), row["customerPhone"].ToString());
             Stringer = new OrderStringerDto(row["stringerFirstName"].ToString(), row["stringerLastName"].ToString(), row["stringerPhone"].ToString(), row["stringerEmail"].ToString());
