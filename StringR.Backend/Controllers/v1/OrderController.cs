@@ -101,7 +101,7 @@ namespace StringR.Backend.Controllers.v1
         {
             try
             {
-                _orderDataController.PutOrder(orderTransaction.OrderId, orderTransaction.TransactionDate, orderTransaction.PaidStatus, orderTransaction.OrderStatus);
+                _orderDataController.PutOrder(orderTransaction.OrderId, orderTransaction.TransactionDate, orderTransaction.Paid, orderTransaction.OrderStatus);
                 return Ok("Your order is now updated");
             }
             catch (Exception e)
