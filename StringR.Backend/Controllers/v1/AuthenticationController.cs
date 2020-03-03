@@ -58,7 +58,7 @@ namespace StringR.Backend.Controllers.v1
             
             var token = CreateToken(login.Email);
             
-            var authenticationResponse = new AuthenticateResponse(token, response.shopId, login.Email + " is successfully authenticated");
+            var authenticationResponse = new AuthenticateResponse(token, response.shopId, response.teamId, login.Email + " is successfully authenticated");
                 
             return Ok(authenticationResponse);
         }
