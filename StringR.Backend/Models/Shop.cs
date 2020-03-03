@@ -11,10 +11,10 @@ namespace StringR.Backend.Models
         public string Street { get; set; }
         public string AddressNumber { get; set;  }
         public string PhoneNumber { get; set; }
-        public string UserId { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
 
-        public Shop(string shopName, string zipCode, string city, string country, double longitude, double latitude, string street, string addressNumber, string phoneNumber, string userId, string password)
+        public Shop(string shopName, string zipCode, string city, string country, double longitude, double latitude, string street, string addressNumber, string phoneNumber, string email, string password)
         {
             ShopName = shopName;
             ZipCode = zipCode;
@@ -25,7 +25,7 @@ namespace StringR.Backend.Models
             Street = street;
             AddressNumber = addressNumber;
             PhoneNumber = phoneNumber;
-            UserId = userId;
+            Email = email;
             Password = password;
         }
     }

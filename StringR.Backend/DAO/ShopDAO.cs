@@ -57,7 +57,7 @@ namespace StringR.Backend.DAO
                 _dataAccessLayer.AddParameters(6, "street", shop.Street);
                 _dataAccessLayer.AddParameters(7, "addressNumber", shop.AddressNumber);
                 _dataAccessLayer.AddParameters(8, "phoneNumber", shop.PhoneNumber);
-                _dataAccessLayer.AddParameters(9, "userId", shop.UserId);
+                _dataAccessLayer.AddParameters(9, "email", shop.Email);
                 _dataAccessLayer.AddParameters(10, "password", AuthenticationController.HashingPassword(shop.Password));
 
                 _dataAccessLayer.ExecuteScalar("CreateShop", CommandType.StoredProcedure);

@@ -50,6 +50,7 @@ namespace StringR.Backend.DataController
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 throw;
             }
         }
