@@ -27,7 +27,7 @@ namespace StringR.Backend.DTO
             OrderStatus = (int) row["orderStatus"];
             Comment = row["comment"].ToString();
             Price = (double) row["price"];
-            Paid = (bool) row["paid"];
+            Paid = (sbyte) row["paid"] == 1;
             DeliveryDate = (long) row["deliveryDate"];
             TensionVertical = (double) row["tensionVertical"];
             TensionHorizontal = (double) row["tensionHorizontal"];
